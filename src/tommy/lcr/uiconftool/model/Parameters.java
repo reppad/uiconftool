@@ -185,7 +185,9 @@ public class Parameters {
 	}
 	
 	private String getStringValue(boolean param) {
-		return null;
+		if(param)
+			return "1";
+		return "0";
 	}
 //	public void writeTestFile() {
 //		try {

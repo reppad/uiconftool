@@ -1,3 +1,9 @@
+//======================================//
+// UI Conf Tool for LCR 1.7				//
+// author : grandgto@gmail.com			//
+//										//
+//======================================//
+
 package tommy.lcr.uiconftool;
 
 import tommy.lcr.uiconftool.controller.EventManager;
