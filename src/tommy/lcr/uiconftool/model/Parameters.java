@@ -321,7 +321,7 @@ public class Parameters {
 		return "0";
 	}
 	
-	private void reset() {
+	public void reset() {
 		mReset = true;
 		applyConfiguration();
 		mReset = false;

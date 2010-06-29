@@ -1,15 +1,17 @@
-//======================================//
-// UI Conf Tool for LCR 1.7				//
-// author : grandgto@gmail.com			//
-//										//
-//======================================//
+//==============================//
+// UI Conf Tool for LCR 1.7		//
+// author : grandgto@gmail.com	//
+//==============================//
 
 package tommy.lcr.uiconftool;
 
 import tommy.lcr.uiconftool.controller.EventManager;
 import tommy.lcr.uiconftool.controller.EventManager.State;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -40,7 +42,7 @@ public class UiConfTool extends Activity {
 
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
-
+		
 	}
 	
 	private void initialise() {

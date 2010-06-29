@@ -11,4 +11,8 @@
 <string name="main_buttonValid">Enregistrer les modifications</string>
 <string name="main_listInterfaces">Choisissez une interface</string>
 <string name="main_desactivateCT">Désactiver UI Conf Tool</string>
+<string name="alert_confirmMsg">Un redémarrage est nécessaire pour appliquer les modifications.\n\nSouhaitez-vous redémarrer maintenant ?</string>
+<string name="cancel">Annuler</string>
+<string name="yes">Oui</string>
+<string name="no">Non</string>
 </resources>
