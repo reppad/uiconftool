@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">UI conf tool for LCR 1.7</string>
+
+<string name="main_activateCT">Activer UI Conf Tool</string>
+<string name="main_interfaceStream">Interface Stream</string>
+<string name="main_interfaceAndroid">Interface Android</string>
+<string name="main_interfacePerso">Interface Personnalisée</string>
+<string name="main_ButtonPerso">Personnaliser</string>
+<string name="main_buttonValid">Enregistrer les modifications</string>
+<string name="main_listInterfaces">Choisissez une interface</string>
+<string name="main_desactivateCT">Désactiver UI Conf Tool</string>
+</resources>
