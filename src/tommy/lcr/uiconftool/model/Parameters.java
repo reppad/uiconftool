@@ -1,9 +1,12 @@
 package tommy.lcr.uiconftool.model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import android.os.Environment;
@@ -14,10 +17,12 @@ public class Parameters {
 	private boolean FULL_UI_ACER;
 	private boolean FULL_UI_ANDROID;
 	private boolean STATUS_BAR_AT_THE_BOTTOM;
+	private boolean NOTIFICATION_TYPE_STREAM;
 	private boolean STREAM_NOTIFICATION_ON_TOP;
 	private boolean DIALER_TYPE_STREAM;
 	private boolean LOCK_TYPE_STREAM;
 	private boolean LAUNCHER_TYPE_STREAM;
+	private boolean mReset;
 	
 	/**
 	 * default constructor
@@ -28,10 +33,12 @@ public class Parameters {
 		FULL_UI_ACER = false;
 		FULL_UI_ANDROID = false;
 		STATUS_BAR_AT_THE_BOTTOM = false;
+		NOTIFICATION_TYPE_STREAM = false;
 		STREAM_NOTIFICATION_ON_TOP = false;
 		DIALER_TYPE_STREAM = false;
 		LOCK_TYPE_STREAM = false;
 		LAUNCHER_TYPE_STREAM = false;
+		mReset = false;
 		readConfFile();
 	}	
 	
@@ -70,6 +77,13 @@ public class Parameters {
 	}
 	public void setSTATUS_BAR_AT_THE_BOTTOM(boolean sTATUS_BAR_AT_THE_BOTTOM) {
 		STATUS_BAR_AT_THE_BOTTOM = sTATUS_BAR_AT_THE_BOTTOM;
+	}
+
+	public boolean isNOTIFICATION_TYPE_STREAM() {
+		return NOTIFICATION_TYPE_STREAM;
+	}
+	public void setNOTIFICATION_TYPE_STREAM(boolean nOTIFICATION_TYPE_STREAM) {
+		STREAM_NOTIFICATION_ON_TOP = nOTIFICATION_TYPE_STREAM;
 	}
 
 	public boolean isSTREAM_NOTIFICATION_ON_TOP() {
@@ -125,10 +139,10 @@ public class Parameters {
 			    in.close();
 			    reader.close();
 			} else {
-				ret = "root.canRead() is false";
+				ret = "readConfFile : root.canRead() is false";
 			}
 		} catch (Exception e) {
-			ret = "Exception : " + e.getMessage();
+			ret = "readConfFile Exception : " + e.getMessage();
 		}
 		ret = "readConfFile OK";
 		return ret;
@@ -154,6 +168,8 @@ public class Parameters {
 			FULL_UI_ANDROID = readParamValue(line);
 		else if(line.startsWith("|STATUS_BAR_AT_THE_BOTTOM|"))
 			STATUS_BAR_AT_THE_BOTTOM = readParamValue(line);
+		else if(line.startsWith("|NOTIFICATION_TYPE_STREAM|"))
+			NOTIFICATION_TYPE_STREAM = readParamValue(line);
 		else if(line.startsWith("|STREAM_NOTIFICATION_ON_TOP|"))
 			STREAM_NOTIFICATION_ON_TOP = readParamValue(line);
 		else if(line.startsWith("|DIALER_TYPE_STREAM|"))
@@ -180,130 +196,135 @@ public class Parameters {
 		String ret;
 		
 		String content = "#\n" +
-# Malez@2010
-#
-# configuration file to customize LCR user Interface
-# do not modify entry name. Just modify value to 0 or 1
-# to disable / enable a feature
-#
-# TO APPLY CHANGES, JUST REBOOT
-#
-# ==========================================================================================
-# REINIT INSTRUCTIONS
-#
-# IMPORTANT IF YOU HAVE ISSUES, DISABLE THIS CONFIG FILE (|THIS_CONF_MUST_BE_APPLIED|0| or rename the file) 
-# You can also change user interface in Settings/Application/UI on your phone (you won't need it)
-#
-# Note than using stream part will slow down your phone
-#
-# AFTER ANY CHANGE IN SETTINGS, YOU WILL HAVE TO REMOVE/READD YOUR WIDGETS
-# ==========================================================================================
-#
-# Line Format (really important)
-# |propertyName|value|
-#
-############################################
-#
-# General Settings and Recovery
-#
-############################################
-#
-# THIS_CONF_MUST_BE_APPLIED : Does this file need to be parsed / 0 => ignore the file. UI is set via Operting system. / 1 => parse the file
-|THIS_CONF_MUST_BE_APPLIED|1|
-
-# RECOVERY : Try this in case you have application that "Force Close" after applying a setting
-# This will restore defaut Launcher Settings (you will have to reconfigure launchers)
-# After recovering this conf will be disabled
-# 1 => Try to fix 0 => Default standard
-|RECOVERY|0|
-
-############################################
-#
-# Full UI
-#
-############################################ 
-#
-# If you enable this any other settings will be ignored
-# FULL_UI_ANDROID : Full standard Android UI
-# FULL_UI_ACER : Full standard Acer UI (Will break widget update)
-# Be carrefull : if you enable both, UI will be set to full android
-|FULL_UI_ACER|0|
-|FULL_UI_ANDROID|0|
-
-
-############################################
-#
-# Status bar
-#
-############################################
-# STATUS_BAR_AT_THE_BOTTOM : Do you want the status bar to be moved down to bottom / 0 => top / 1 => bottom
-|STATUS_BAR_AT_THE_BOTTOM|0|
-
-############################################
-#
-# Notifications
-#
-############################################
-#NOTIFICATION_TYPE_STREAM : Do you want stream like notification / 0=>android notifications / 1=>Stream notifications
-|NOTIFICATION_TYPE_STREAM|1|
-
-#STREAM_NOTIFICATION_ON_TOP (only available when NOTIFICATION_TYPE_STREAM=1) : Where are located notifications / 0=>BOTTOM 1=>TOP
-|STREAM_NOTIFICATION_ON_TOP|1|
-
-############################################
-#
-# Dialer and Lock screen
-#
-############################################
-#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer
-|DIALER_TYPE_STREAM|1|
-
-#LOCK_TYPE_STREAM : Do you want Widget Lock screen / 0=>Standard Android Lock / 1=>Stream Widget Lock
-#
-# WARNING !!!
-# !! Note that this will break widget refresh on desktop on reboot !!
-#
-# Android lock prefered
-#
-|LOCK_TYPE_STREAM|0|
-
-############################################
-#
-# Launchers
-#
-############################################
-
-#LAUNCHER_TYPE_STREAM : 
-# if you want use breeze launcher and your status bar does not work, set this to 1, otherwise set 0
-# Then change user interface in Settings/Application/UI to Acer_UI on your phone
-# Enabling this will disable ANDROID type notifications
-# To disable, set to 0 and change user interface in Settings/Application/UI to Android_UI on your phone
-|LAUNCHER_TYPE_STREAM|0|"
+		"# Malez@2010\n" +
+		"#\n" +
+		"# configuration file to customize LCR user Interface\n" +
+		"# do not modify entry name. Just modify value to 0 or 1\n" +
+		"# to disable / enable a feature\n" +
+		"#\n" +
+		"# TO APPLY CHANGES, JUST REBOOT\n" +
+		"#\n" +
+		"# ==========================================================================================\n" +
+		"# REINIT INSTRUCTIONS\n" +
+		"#\n" +
+		"# IMPORTANT IF YOU HAVE ISSUES, DISABLE THIS CONFIG FILE (|THIS_CONF_MUST_BE_APPLIED|0| or rename the file) \n" +
+		"# You can also change user interface in Settings/Application/UI on your phone (you won't need it)\n" +
+		"#\n" +
+		"# Note than using stream part will slow down your phone\n" +
+		"#\n" +
+		"# AFTER ANY CHANGE IN SETTINGS, YOU WILL HAVE TO REMOVE/READD YOUR WIDGETS\n" +
+		"# ==========================================================================================\n" +
+		"#\n" +
+		"# Line Format (really important)\n" +
+		"# |propertyName|value|\n" +
+		"#\n" +
+		"############################################\n" +
+		"#\n" +
+		"# General Settings and Recovery\n" +
+		"#\n" +
+		"############################################\n" +
+		"#\n" +
+		"# THIS_CONF_MUST_BE_APPLIED : Does this file need to be parsed / 0 => ignore the file. UI is set via Operting system. / 1 => parse the file\n" +
+		"|THIS_CONF_MUST_BE_APPLIED|" + getStringValue(THIS_CONF_MUST_BE_APPLIED) + "|\n" +
+		"\n" +
+		"# RECOVERY : Try this in case you have application that \"Force Close\" after applying a setting\n" +
+		"# This will restore defaut Launcher Settings (you will have to reconfigure launchers)\n" +
+		"# After recovering this conf will be disabled\n" +
+		"# 1 => Try to fix 0 => Default standard\n" +
+		"|RECOVERY|" + getStringValue(RECOVERY) + "|\n" +
+		"\n" +
+		"############################################\n" +
+		"#\n" +
+		"# Full UI\n" +
+		"#\n" +
+		"############################################ \n" +
+		"#\n" +
+		"# If you enable this any other settings will be ignored\n" +
+		"# FULL_UI_ANDROID : Full standard Android UI\n" +
+		"# FULL_UI_ACER : Full standard Acer UI (Will break widget update)\n" +
+		"# Be carrefull : if you enable both, UI will be set to full android\n" +
+		"|FULL_UI_ACER|" + getStringValue(FULL_UI_ACER) + "|\n" +
+		"|FULL_UI_ANDROID|" + getStringValue(FULL_UI_ANDROID) + "|\n" +
+		"\n" +
+		"\n" +
+		"############################################\n" +
+		"#\n" +
+		"# Status bar\n" +
+		"#\n" +
+		"############################################\n" +
+		"# STATUS_BAR_AT_THE_BOTTOM : Do you want the status bar to be moved down to bottom / 0 => top / 1 => bottom\n" +
+		"|STATUS_BAR_AT_THE_BOTTOM|" + getStringValue(STATUS_BAR_AT_THE_BOTTOM) + "|\n" +
+		"\n" +
+		"############################################\n" +
+		"#\n" +
+		"# Notifications\n" +
+		"#\n" +
+		"############################################\n" +
+		"#NOTIFICATION_TYPE_STREAM : Do you want stream like notification / 0=>android notifications / 1=>Stream notifications\n" +
+		"|NOTIFICATION_TYPE_STREAM|" + getStringValue(NOTIFICATION_TYPE_STREAM) + "|\n" +
+		"\n" +
+		"#STREAM_NOTIFICATION_ON_TOP (only available when NOTIFICATION_TYPE_STREAM=1) : Where are located notifications / 0=>BOTTOM 1=>TOP\n" +
+		"|STREAM_NOTIFICATION_ON_TOP|" + getStringValue(STREAM_NOTIFICATION_ON_TOP) + "|\n" +
+		"\n" +
+		"############################################\n" +
+		"#\n" +
+		"# Dialer and Lock screen\n" +
+		"#\n" +
+		"############################################\n" +
+		"#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer\n" +
+		"|DIALER_TYPE_STREAM|" + getStringValue(DIALER_TYPE_STREAM) + "|\n" +
+		"\n" +
+		"#LOCK_TYPE_STREAM : Do you want Widget Lock screen / 0=>Standard Android Lock / 1=>Stream Widget Lock\n" +
+		"#\n" +
+		"# WARNING !!!\n" +
+		"# !! Note that this will break widget refresh on desktop on reboot !!\n" +
+		"#\n" +
+		"# Android lock prefered\n" +
+		"#\n" +
+		"|LOCK_TYPE_STREAM|" + getStringValue(LOCK_TYPE_STREAM) + "|\n" +
+		"\n" +
+		"############################################\n" +
+		"#\n" +
+		"# Launchers\n" +
+		"#\n" +
+		"############################################\n" +
+		"\n" +
+		"#LAUNCHER_TYPE_STREAM : \n" +
+		"# if you want use breeze launcher and your status bar does not work, set this to 1, otherwise set 0\n" +
+		"# Then change user interface in Settings/Application/UI to Acer_UI on your phone\n" +
+		"# Enabling this will disable ANDROID type notifications\n" +
+		"# To disable, set to 0 and change user interface in Settings/Application/UI to Android_UI on your phone\n" +
+		"|LAUNCHER_TYPE_STREAM|" + getStringValue(LAUNCHER_TYPE_STREAM) + "|\n";
 		
-		// ...
+		try {
+		    File root = Environment.getExternalStorageDirectory();
+		    if (root.canWrite()){
+		        File confFile = new File(root, "LCR_UI.txt");
+		        FileWriter writer = new FileWriter(confFile);
+		        BufferedWriter out = new BufferedWriter(writer);
+		        out.write(content);
+		        out.close();
+		    }
+		} catch (IOException e) {
+		    ret = "applyConfiguration IOException : " + e.getMessage();
+		}
+		
 		ret = "applyConfiguration OK";
 		return ret;
 	}
 	
 	private String getStringValue(boolean param) {
+		if(mReset)
+			return "0";
 		if(param)
 			return "1";
 		return "0";
 	}
-//	public void writeTestFile() {
-//		try {
-//		    File root = Environment.getExternalStorageDirectory();
-//		    if (root.canWrite()){
-//		        File gpxfile = new File(root, "testFile.txt");
-//		        FileWriter gpxwriter = new FileWriter(gpxfile);
-//		        BufferedWriter out = new BufferedWriter(gpxwriter);
-//		        out.write("Hello world");
-//		        out.close();
-//		    }
-//		} catch (IOException e) {
-//		    
-//		}
-//	}
-
+	
+	private void reset() {
+		mReset = true;
+		applyConfiguration();
+		mReset = false;
+	}
 
 }//class
