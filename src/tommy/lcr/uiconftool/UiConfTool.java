@@ -25,7 +25,8 @@ public class UiConfTool extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
-		initialise();
+		
+		mEventManager = new EventManager(this);
 
 		Button ButtonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
 		ButtonActivateCT.setOnClickListener(mEventManager.getButtonActivateCT());
@@ -42,13 +43,9 @@ public class UiConfTool extends Activity {
 
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
-	}
-	
-	/**
-	 * Application contructor
-	 */
-	public void initialise() {
-		mEventManager = new EventManager(this);
+		
+		String ret = mEventManager.initParam();
+		affMessage(ret);
 		refresh();
 	}
 
@@ -75,7 +72,7 @@ public class UiConfTool extends Activity {
 			buttonPerso.setVisibility(View.INVISIBLE);
 			break;
 		case PERSO:
-			buttonActivateCT.setText(R.string.main_activateCT);
+			buttonActivateCT.setText(R.string.main_desactivateCT);
 			type.setVisibility(View.VISIBLE);
 			s.setVisibility(View.VISIBLE);
 			buttonPerso.setVisibility(View.VISIBLE);

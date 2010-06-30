@@ -95,9 +95,14 @@ public class EventManager {
 				//nothing to do
 			}
 		};
-		
+	} //constructor
+
+	/**
+	 * Read conf file and set spinner position
+	 * @return Message
+	 */
+	public String initParam() {
 		String ret = mParam.readConfFile();
-		mActivity.affMessage(ret);
 		
 		switch (mParam.getUIType()) {
 		case ANDROID:
@@ -113,7 +118,9 @@ public class EventManager {
 			//impossible case
 			break;
 		}
-	} //constructor
+		
+		return ret;
+	}
 
 	//--------------Getters----------------//
 	
