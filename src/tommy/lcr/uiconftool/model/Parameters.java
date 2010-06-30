@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import android.os.Environment;
 
 public class Parameters {	
+//	public enum UIStyle { ANDROID , ACER , PERSO };
+	
 	private boolean THIS_CONF_MUST_BE_APPLIED;
 	private boolean RECOVERY;
 	private boolean FULL_UI_ACER;
@@ -39,7 +41,6 @@ public class Parameters {
 		LOCK_TYPE_STREAM = false;
 		LAUNCHER_TYPE_STREAM = false;
 		mReset = false;
-		readConfFile();
 	}	
 	
 	//---------Getters and Setters-----------//
@@ -192,7 +193,7 @@ public class Parameters {
 	 * Generate configuration file from classe attributes
 	 * @return Method final state
 	 */
-	private String applyConfiguration() {
+	public String applyConfiguration() {
 		String ret;
 		
 		String content = "#\n" +

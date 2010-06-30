@@ -36,6 +36,13 @@
 		android:layout_gravity="center_horizontal"
 		android:layout_marginTop="100px"></Button>
 		
+	<TextView android:text="Message"
+		android:id="@+id/TextViewMessage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20px"></TextView>
+		
+
 
 
 </LinearLayout>

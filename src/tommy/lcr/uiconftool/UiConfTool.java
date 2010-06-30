@@ -8,21 +8,20 @@ package tommy.lcr.uiconftool;
 import tommy.lcr.uiconftool.controller.EventManager;
 import tommy.lcr.uiconftool.controller.EventManager.State;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class UiConfTool extends Activity {
 	/** Called when the activity is first created. */
 
-	private EventManager mEventManager = new EventManager(this);
+	private EventManager mEventManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,11 +30,15 @@ public class UiConfTool extends Activity {
 		setContentView(R.layout.main);
 		initialise();
 
+		Button ButtonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
+		ButtonActivateCT.setOnClickListener(mEventManager.getButtonActivateCT());
+
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
-		ArrayAdapter adapter = ArrayAdapter.createFromResource(
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	            this, R.array.interfaces, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
+		s.setOnItemSelectedListener(mEventManager.getSpinnerListener());
 
 		Button ButtonPerso = (Button) findViewById(R.id.ButtonPerso);
 		ButtonPerso.setOnClickListener(mEventManager.getButtonPersoListener());
@@ -45,27 +48,42 @@ public class UiConfTool extends Activity {
 		
 	}
 	
-	private void initialise() {
+	public void initialise() {
+		mEventManager = new EventManager(this);
 		State app = mEventManager.getParamState();
+		Button buttonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
+		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
+		Button buttonPerso = (Button) findViewById(R.id.ButtonPerso);
 		switch (app) {
 		case OFF:
-			Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
-			Button ButtonPerso = (Button) findViewById(R.id.ButtonPerso);
-			Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
+			buttonActivateCT.setText(R.string.main_activateCT);
 			s.setVisibility(View.INVISIBLE);
-			ButtonPerso.setVisibility(View.INVISIBLE);
-			ButtonValid.setVisibility(View.INVISIBLE);
+			buttonPerso.setVisibility(View.INVISIBLE);
 			break;
 		case DEFAULT:
-			Button ButtonP = (Button) findViewById(R.id.ButtonPerso);
-			ButtonP.setVisibility(View.INVISIBLE);
+			buttonActivateCT.setText(R.string.main_desactivateCT);
+			s.setVisibility(View.VISIBLE);
+			buttonPerso.setVisibility(View.INVISIBLE);
 			break;
 		case PERSO:
-			// ...
+			buttonActivateCT.setText(R.string.main_activateCT);
+			s.setVisibility(View.VISIBLE);
+			buttonPerso.setVisibility(View.VISIBLE);
 			break;
 		default:
 			// ... Error !
 			break;
 		}
+	}
+	
+	public void popUp(String msg, int duration) {
+
+		Toast toast = Toast.makeText(getApplicationContext(), msg, duration);
+		toast.show();
+	}
+	
+	public void affMessage(String msg) {
+		TextView tv = (TextView) findViewById(R.id.TextViewMessage);
+		tv.setText(msg);
 	}
 }
