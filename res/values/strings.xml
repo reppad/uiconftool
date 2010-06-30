@@ -5,13 +5,11 @@
 
 <string name="main_activateCT">Activer UI Conf Tool</string>
 <string name="main_desactivateCT">Désactiver UI Conf Tool</string>
-<string name="main_interfaceStream">Interface Stream</string>
-<string name="main_interfaceAndroid">Interface Android</string>
-<string name="main_interfacePerso">Interface Personnalisée</string>
+<string name="main_interfaceType">Type d\'interface :</string>
 <string name="main_ButtonPerso">Personnaliser</string>
-<string name="main_buttonValid">Enregistrer les modifications</string>
+<string name="main_buttonValid">Quitter</string>
 <string name="main_listInterfaces">Choisissez une interface</string>
-<string name="alert_confirmMsg">Un redémarrage est nécessaire pour appliquer les modifications.\n\nSouhaitez-vous redémarrer maintenant ?</string>
+<string name="alert_confirmMsg">Enregistrer les modifications?\n\n(Les changement effectués seront appliqués au prochain demarrage du téléphone)</string>
 <string name="cancel">Annuler</string>
 <string name="yes">Oui</string>
 <string name="no">Non</string>

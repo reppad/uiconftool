@@ -1,12 +1,7 @@
-//==============================//
-// UI Conf Tool for LCR 1.7		//
-// author : grandgto@gmail.com	//
-//==============================//
-
 package tommy.lcr.uiconftool;
 
 import tommy.lcr.uiconftool.controller.EventManager;
-import tommy.lcr.uiconftool.controller.EventManager.State;
+import tommy.lcr.uiconftool.model.Parameters;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+/**
+ * UI Conf Tool for LCR 1.7
+ * @author grandgto@gmail.com
+ */
 public class UiConfTool extends Activity {
-	/** Called when the activity is first created. */
 
 	private EventManager mEventManager;
 
@@ -45,45 +42,71 @@ public class UiConfTool extends Activity {
 
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
-		
 	}
 	
+	/**
+	 * Application contructor
+	 */
 	public void initialise() {
 		mEventManager = new EventManager(this);
-		State app = mEventManager.getParamState();
+		refresh();
+	}
+
+	/**
+	 * Hide useless interface elements
+	 */
+	public void refresh() {
+		Parameters.State app = mEventManager.getUIState();
 		Button buttonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
+		TextView type = (TextView) findViewById(R.id.TextViewInterfaceType);
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		Button buttonPerso = (Button) findViewById(R.id.ButtonPerso);
 		switch (app) {
 		case OFF:
 			buttonActivateCT.setText(R.string.main_activateCT);
+			type.setVisibility(View.INVISIBLE);
 			s.setVisibility(View.INVISIBLE);
 			buttonPerso.setVisibility(View.INVISIBLE);
 			break;
 		case DEFAULT:
 			buttonActivateCT.setText(R.string.main_desactivateCT);
+			type.setVisibility(View.VISIBLE);
 			s.setVisibility(View.VISIBLE);
 			buttonPerso.setVisibility(View.INVISIBLE);
 			break;
 		case PERSO:
 			buttonActivateCT.setText(R.string.main_activateCT);
+			type.setVisibility(View.VISIBLE);
 			s.setVisibility(View.VISIBLE);
 			buttonPerso.setVisibility(View.VISIBLE);
 			break;
 		default:
-			// ... Error !
+			// impossible case
 			break;
 		}
 	}
 	
+	/**
+	 * Show a popup message
+	 * @param msg Displayed text
+	 * @param duration 1 for long, 0 for short
+	 */
 	public void popUp(String msg, int duration) {
-
 		Toast toast = Toast.makeText(getApplicationContext(), msg, duration);
 		toast.show();
 	}
 	
+	/**
+	 * Set bottom TextView text
+	 * @param msg text
+	 */
 	public void affMessage(String msg) {
 		TextView tv = (TextView) findViewById(R.id.TextViewMessage);
 		tv.setText(msg);
+	}
+	
+	public void setSpinnerSelectedItem(int id) {
+		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
+		s.setSelection(id);
 	}
 }

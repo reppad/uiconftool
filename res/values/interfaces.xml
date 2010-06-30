@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="interfaces">
-		<item>Interface Android</item>
-		<item>Interface Stream</item>
-		<item>Interface Personnalisée</item>
+		<item>Android</item>
+		<item>Acer Stream</item>
+		<item>Personnalisée</item>
 	</string-array>
 
 </resources>

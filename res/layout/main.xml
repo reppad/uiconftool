@@ -15,12 +15,19 @@
 		android:layout_gravity="center_horizontal"
 		android:layout_marginTop="30px"></Button>
 		
+	<TextView android:text="@string/main_interfaceType"
+		android:id="@+id/TextViewInterfaceType"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20px"
+		android:layout_gravity="center_horizontal"></TextView>
+		
 	<Spinner android:id="@+id/SpinnerInterfaces"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:prompt="@string/main_listInterfaces"
 		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="20px"></Spinner>
+		android:layout_marginTop="5px"></Spinner>
 		
 	<Button android:text="@string/main_ButtonPerso"
 		android:id="@+id/ButtonPerso"

@@ -13,6 +13,4 @@
 
     </application>
     
-	<uses-permission android:name="android.permission.REBOOT" />
-
 </manifest> 

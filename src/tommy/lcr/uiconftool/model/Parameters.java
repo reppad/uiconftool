@@ -11,8 +11,20 @@ import java.io.InputStreamReader;
 
 import android.os.Environment;
 
-public class Parameters {	
-//	public enum UIStyle { ANDROID , ACER , PERSO };
+public class Parameters {
+
+	/**
+	 * Personalisation state :
+	 *  OFF -> UI Conf Tool not used
+	 *  DEFAULT -> Full Acer/Android UI
+	 *  PERSO -> Custom UI
+	 */
+	public enum State { OFF , DEFAULT , PERSO };
+	
+	/**
+	 * Type of UI selected
+	 */
+	public enum UIType { ANDROID , ACER , PERSO };
 	
 	private boolean THIS_CONF_MUST_BE_APPLIED;
 	private boolean RECOVERY;
@@ -27,7 +39,7 @@ public class Parameters {
 	private boolean mReset;
 	
 	/**
-	 * default constructor
+	 * Default constructor
 	 */
 	public Parameters() {
 		THIS_CONF_MUST_BE_APPLIED = false;
@@ -114,6 +126,14 @@ public class Parameters {
 	public void setLAUNCHER_TYPE_STREAM(boolean lAUNCHER_TYPE_STREAM) {
 		LAUNCHER_TYPE_STREAM = lAUNCHER_TYPE_STREAM;
 	}
+	
+	public UIType getUIType() {
+		if(FULL_UI_ANDROID && !FULL_UI_ACER)
+			return UIType.ANDROID;
+		if(!FULL_UI_ANDROID && FULL_UI_ACER)
+			return UIType.ACER;
+		return UIType.PERSO;
+	}
 
 	//---------Methods-----------//
 	
@@ -179,6 +199,17 @@ public class Parameters {
 			LOCK_TYPE_STREAM = readParamValue(line);
 		else if(line.startsWith("|LAUNCHER_TYPE_STREAM|"))
 			LAUNCHER_TYPE_STREAM = readParamValue(line);
+	}
+	
+	/**
+	 * @return Type of UI
+	 */
+	public State getUIState() {
+		if(!THIS_CONF_MUST_BE_APPLIED)
+			return State.OFF;
+		if(!FULL_UI_ANDROID && !FULL_UI_ACER)
+			return State.PERSO;
+		return State.DEFAULT;
 	}
 	
 	/**

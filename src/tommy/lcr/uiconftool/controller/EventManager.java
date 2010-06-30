@@ -10,25 +10,29 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * Event manager
+ * @author grandgto@gmail.com
+ */
 public class EventManager {
-
-	public enum State { OFF , DEFAULT , PERSO };
 
 	private UiConfTool				mActivity;
 	private Parameters				mParam;
 	private OnClickListener 		buttonActivateCT, buttonPersoListener, buttonValidListener;
 	private OnItemSelectedListener	spinnerListener;
 
+	/**
+	 * Default constructor
+	 * @param p_activity
+	 */
 	public EventManager(UiConfTool p_activity) {
 		mActivity = p_activity;
 		mParam = new Parameters();
-		String ret = mParam.readConfFile();
-		mActivity.affMessage(ret);
 
 		buttonActivateCT = new OnClickListener() {
 			public void onClick(View v) {
 				mParam.setTHIS_CONF_MUST_BE_APPLIED(!mParam.isTHIS_CONF_MUST_BE_APPLIED());
-				mActivity.initialise();
+				mActivity.refresh();
 			}
 		};
 
@@ -41,16 +45,12 @@ public class EventManager {
 
 		buttonValidListener = new OnClickListener() {
 			public void onClick(View v) {
-				String ret = mParam.applyConfiguration();
-				mActivity.affMessage(ret);
-				
 				AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 				builder.setMessage(R.string.alert_confirmMsg)
 						.setCancelable(false)
 						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								//reboot phone
-								// ...
+								mParam.applyConfiguration();
 								mActivity.finish();
 							}
 						})
@@ -89,20 +89,36 @@ public class EventManager {
 					default:
 						break;
 				}
-				mActivity.initialise();
+				mActivity.refresh();
 			}
 			public void onNothingSelected(AdapterView<?> arg0) {
 				//nothing to do
 			}
 		};
+		
+		String ret = mParam.readConfFile();
+		mActivity.affMessage(ret);
+		
+		switch (mParam.getUIType()) {
+		case ANDROID:
+			mActivity.setSpinnerSelectedItem(0);
+			break;
+		case ACER:
+			mActivity.setSpinnerSelectedItem(1);
+			break;
+		case PERSO:
+			mActivity.setSpinnerSelectedItem(2);
+			break;
+		default:
+			//impossible case
+			break;
+		}
 	} //constructor
 
-	public State getParamState() {
-		if(!mParam.isTHIS_CONF_MUST_BE_APPLIED())
-			return State.OFF;
-		if(!mParam.isFULL_UI_ANDROID() & !mParam.isFULL_UI_ACER())
-			return State.PERSO;
-		return State.DEFAULT;
+	//--------------Getters----------------//
+	
+	public Parameters.State getUIState() {
+		return mParam.getUIState();
 	}
 
 	public OnClickListener getButtonActivateCT() {
