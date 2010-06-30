@@ -4,6 +4,8 @@ import tommy.lcr.uiconftool.controller.EventManager;
 import tommy.lcr.uiconftool.model.Parameters;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -44,11 +46,11 @@ public class UiConfTool extends Activity {
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
 		
-		String ret = mEventManager.initParam();
-		affMessage(ret);
+		mEventManager.readParam();
+		mEventManager.setSpinnerPosition();
 		refresh();
 	}
-
+	
 	/**
 	 * Hide useless interface elements
 	 */
@@ -93,17 +95,26 @@ public class UiConfTool extends Activity {
 		toast.show();
 	}
 	
-	/**
-	 * Set bottom TextView text
-	 * @param msg text
-	 */
-	public void affMessage(String msg) {
-		TextView tv = (TextView) findViewById(R.id.TextViewMessage);
-		tv.setText(msg);
-	}
-	
 	public void setSpinnerSelectedItem(int id) {
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		s.setSelection(id);
+	}
+
+	//---------------Menu---------------//
+	
+	/* Creates the menu items */
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    menu.add(0, 0, 0, R.string.reinitFile);
+	    return true;
+	}
+
+	/* Handles item selections */
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case 0:
+	    	mEventManager.resetConfiguration();
+	        return true;
+	    }
+	    return false;
 	}
 }

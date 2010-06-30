@@ -98,12 +98,17 @@ public class EventManager {
 	} //constructor
 
 	/**
-	 * Read conf file and set spinner position
+	 * Read conf file
 	 * @return Message
 	 */
-	public String initParam() {
-		String ret = mParam.readConfFile();
-		
+	public String readParam() {
+		return mParam.readConfFile();
+	}
+	
+	/**
+	 * Set spinner position
+	 */
+	public void setSpinnerPosition() {
 		switch (mParam.getUIType()) {
 		case ANDROID:
 			mActivity.setSpinnerSelectedItem(0);
@@ -118,8 +123,12 @@ public class EventManager {
 			//impossible case
 			break;
 		}
-		
-		return ret;
+	}
+	
+	public void resetConfiguration() {
+		mParam.resetConfiguration();
+		setSpinnerPosition();
+		mActivity.refresh();
 	}
 
 	//--------------Getters----------------//

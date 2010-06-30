@@ -36,24 +36,26 @@ public class Parameters {
 	private boolean DIALER_TYPE_STREAM;
 	private boolean LOCK_TYPE_STREAM;
 	private boolean LAUNCHER_TYPE_STREAM;
-	private boolean mReset;
 	
 	/**
 	 * Default constructor
 	 */
 	public Parameters() {
+		resetConfiguration();
+	}
+	
+	public void resetConfiguration() {
 		THIS_CONF_MUST_BE_APPLIED = false;
 		RECOVERY = false;
 		FULL_UI_ACER = false;
-		FULL_UI_ANDROID = false;
+		FULL_UI_ANDROID = true;
 		STATUS_BAR_AT_THE_BOTTOM = false;
 		NOTIFICATION_TYPE_STREAM = false;
 		STREAM_NOTIFICATION_ON_TOP = false;
 		DIALER_TYPE_STREAM = false;
 		LOCK_TYPE_STREAM = false;
 		LAUNCHER_TYPE_STREAM = false;
-		mReset = false;
-	}	
+	}
 	
 	//---------Getters and Setters-----------//
 	
@@ -346,17 +348,9 @@ public class Parameters {
 	}
 	
 	private String getStringValue(boolean param) {
-		if(mReset)
-			return "0";
 		if(param)
 			return "1";
 		return "0";
-	}
-	
-	public void reset() {
-		mReset = true;
-		applyConfiguration();
-		mReset = false;
 	}
 
 }//class
