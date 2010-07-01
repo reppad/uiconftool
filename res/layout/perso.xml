@@ -4,6 +4,11 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 
+	<ImageView android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/ImageViewPersoTitle"
+		android:src="@drawable/bandeau_titre"></ImageView>
+	
 	<CheckBox android:text="@string/checkBoxSTATUS_BAR_AT_THE_BOTTOM"
 		android:id="@+id/CheckBoxSTATUS_BAR_AT_THE_BOTTOM"
 		android:layout_width="wrap_content"
@@ -21,6 +26,11 @@
 
 	<CheckBox android:text="@string/checkBoxDIALER_TYPE_STREAM"
 		android:id="@+id/CheckBoxDIALER_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxDIALER_TYPE_AOSP"
+		android:id="@+id/CheckBoxDIALER_TYPE_AOSP"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"></CheckBox>
 
@@ -53,4 +63,5 @@
 			
 	</LinearLayout>
 	
+
 </LinearLayout>

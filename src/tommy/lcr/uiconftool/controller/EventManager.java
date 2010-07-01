@@ -42,7 +42,7 @@ public class EventManager {
 
 		buttonPersoListener = new OnClickListener() {
 			public void onClick(View v) {
-				//mActivity.setPersoValues();	///////////
+//				mActivity.setPersoValues();	///////////
 				mActivity.setContentView(R.layout.perso);
 			}
 		};

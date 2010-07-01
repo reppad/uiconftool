@@ -114,6 +114,7 @@ public class UiConfTool extends Activity {
 		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
 		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
 		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
+		CheckBox DIALER_TYPE_AOSP = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
 		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
 		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
 
@@ -121,8 +122,9 @@ public class UiConfTool extends Activity {
 		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
 		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
 		DIALER_TYPE_STREAM.setChecked(values[3]);
-		LOCK_TYPE_STREAM.setChecked(values[4]);
-		LAUNCHER_TYPE_STREAM.setChecked(values[5]);
+		DIALER_TYPE_AOSP.setChecked(values[4]);
+		LOCK_TYPE_STREAM.setChecked(values[5]);
+		LAUNCHER_TYPE_STREAM.setChecked(values[6]);
 	}
 
 	//---------------Menu---------------//

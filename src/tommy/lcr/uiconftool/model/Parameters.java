@@ -34,6 +34,7 @@ public class Parameters {
 	private boolean NOTIFICATION_TYPE_STREAM;
 	private boolean STREAM_NOTIFICATION_ON_TOP;
 	private boolean DIALER_TYPE_STREAM;
+	private boolean DIALER_TYPE_AOSP;
 	private boolean LOCK_TYPE_STREAM;
 	private boolean LAUNCHER_TYPE_STREAM;
 	
@@ -53,6 +54,7 @@ public class Parameters {
 		NOTIFICATION_TYPE_STREAM = false;
 		STREAM_NOTIFICATION_ON_TOP = false;
 		DIALER_TYPE_STREAM = false;
+		DIALER_TYPE_AOSP = false;
 		LOCK_TYPE_STREAM = false;
 		LAUNCHER_TYPE_STREAM = false;
 	}
@@ -115,6 +117,13 @@ public class Parameters {
 		DIALER_TYPE_STREAM = dIALER_TYPE_STREAM;
 	}
 
+	public boolean isDIALER_TYPE_AOSP() {
+		return DIALER_TYPE_AOSP;
+	}
+	public void setDIALER_TYPE_AOSP(boolean dIALER_TYPE_AOSP) {
+		DIALER_TYPE_AOSP = dIALER_TYPE_AOSP;
+	}
+
 	public boolean isLOCK_TYPE_STREAM() {
 		return LOCK_TYPE_STREAM;
 	}
@@ -138,13 +147,14 @@ public class Parameters {
 	}
 	
 	public boolean[] getPersoValues() {
-		boolean[] values = new boolean[6];
+		boolean[] values = new boolean[7];
 		values[0] = STATUS_BAR_AT_THE_BOTTOM;
 		values[1] = NOTIFICATION_TYPE_STREAM;
 		values[2] = STREAM_NOTIFICATION_ON_TOP;
 		values[3] = DIALER_TYPE_STREAM;
-		values[4] = LOCK_TYPE_STREAM;
-		values[5] = LAUNCHER_TYPE_STREAM;
+		values[4] = DIALER_TYPE_AOSP;
+		values[5] = LOCK_TYPE_STREAM;
+		values[6] = LAUNCHER_TYPE_STREAM;
 		return values;
 	}
 
@@ -208,6 +218,8 @@ public class Parameters {
 			STREAM_NOTIFICATION_ON_TOP = readParamValue(line);
 		else if(line.startsWith("|DIALER_TYPE_STREAM|"))
 			DIALER_TYPE_STREAM = readParamValue(line);
+		else if(line.startsWith("|DIALER_TYPE_AOSP|"))
+			DIALER_TYPE_AOSP = readParamValue(line);
 		else if(line.startsWith("|LOCK_TYPE_STREAM|"))
 			LOCK_TYPE_STREAM = readParamValue(line);
 		else if(line.startsWith("|LAUNCHER_TYPE_STREAM|"))
@@ -246,6 +258,8 @@ public class Parameters {
 		"# configuration file to customize LCR user Interface\n" +
 		"# do not modify entry name. Just modify value to 0 or 1\n" +
 		"# to disable / enable a feature\n" +
+		"#\n" +
+		"# 20100628 : v1.1 added AOSP dialer\n" +
 		"#\n" +
 		"# TO APPLY CHANGES, JUST REBOOT\n" +
 		"#\n" +
@@ -291,7 +305,7 @@ public class Parameters {
 		"|FULL_UI_ACER|" + getStringValue(FULL_UI_ACER) + "|\n" +
 		"|FULL_UI_ANDROID|" + getStringValue(FULL_UI_ANDROID) + "|\n" +
 		"\n" +
-		"\n" +
+		" \n" +
 		"############################################\n" +
 		"#\n" +
 		"# Status bar\n" +
@@ -305,7 +319,9 @@ public class Parameters {
 		"# Notifications\n" +
 		"#\n" +
 		"############################################\n" +
-		"#NOTIFICATION_TYPE_STREAM : Do you want stream like notification / 0=>android notifications / 1=>Stream notifications\n" +
+		"#NOTIFICATION_TYPE_STREAM : Do you want stream like notification / 0=>android notifications / 1=>Stream notifications. \n" +
+		"# Note that stream notifications use a lot of battery\n" +
+		"#\n" +
 		"|NOTIFICATION_TYPE_STREAM|" + getStringValue(NOTIFICATION_TYPE_STREAM) + "|\n" +
 		"\n" +
 		"#STREAM_NOTIFICATION_ON_TOP (only available when NOTIFICATION_TYPE_STREAM=1) : Where are located notifications / 0=>BOTTOM 1=>TOP\n" +
@@ -316,8 +332,14 @@ public class Parameters {
 		"# Dialer and Lock screen\n" +
 		"#\n" +
 		"############################################\n" +
-		"#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer\n" +
+		"#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer Contact's picture modification won't work (change in gallery)\n" +
 		"|DIALER_TYPE_STREAM|" + getStringValue(DIALER_TYPE_STREAM) + "|\n" +
+		"\n" +
+		"#|DIALER_TYPE_AOSP|0| : Do you want to use the standard AOSP dialer, not the acer one. It is faster but with less options. Contact's picture modification won't work (change in gallery). \n" +
+		"|DIALER_TYPE_AOSP|" + getStringValue(DIALER_TYPE_AOSP) + "|\n" +
+		"\n" +
+		"\n" +
+		"\n" +
 		"\n" +
 		"#LOCK_TYPE_STREAM : Do you want Widget Lock screen / 0=>Standard Android Lock / 1=>Stream Widget Lock\n" +
 		"#\n" +
