@@ -136,6 +136,17 @@ public class Parameters {
 			return UIType.ACER;
 		return UIType.PERSO;
 	}
+	
+	public boolean[] getPersoValues() {
+		boolean[] values = new boolean[6];
+		values[0] = STATUS_BAR_AT_THE_BOTTOM;
+		values[1] = NOTIFICATION_TYPE_STREAM;
+		values[2] = STREAM_NOTIFICATION_ON_TOP;
+		values[3] = DIALER_TYPE_STREAM;
+		values[4] = LOCK_TYPE_STREAM;
+		values[5] = LAUNCHER_TYPE_STREAM;
+		return values;
+	}
 
 	//---------Methods-----------//
 	

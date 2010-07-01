@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+
+	<CheckBox android:text="@string/checkBoxSTATUS_BAR_AT_THE_BOTTOM"
+		android:id="@+id/CheckBoxSTATUS_BAR_AT_THE_BOTTOM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxNOTIFICATION_TYPE_STREAM"
+		android:id="@+id/CheckBoxNOTIFICATION_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxSTREAM_NOTIFICATION_ON_TOP"
+		android:id="@+id/CheckBoxSTREAM_NOTIFICATION_ON_TOP"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxDIALER_TYPE_STREAM"
+		android:id="@+id/CheckBoxDIALER_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxLOCK_TYPE_STREAM"
+		android:id="@+id/CheckBoxLOCK_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+
+	<CheckBox android:text="@string/checkBoxLAUNCHER_TYPE_STREAM"
+		android:id="@+id/CheckBoxLAUNCHER_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></CheckBox>
+		
+		
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30px">
+	
+		<Button android:text="@string/valid"
+			android:id="@+id/ButtonPersoValid"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+	
+		<Button android:text="@string/cancel"
+			android:id="@+id/ButtonPersoCancel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+			
+	</LinearLayout>
+	
+</LinearLayout>

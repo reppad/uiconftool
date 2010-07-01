@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,12 @@ public class UiConfTool extends Activity {
 
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
+
+//		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
+//		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
+//
+//		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
+//		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
 		
 		mEventManager.readParam();
 		mEventManager.setSpinnerPosition();
@@ -98,6 +105,24 @@ public class UiConfTool extends Activity {
 	public void setSpinnerSelectedItem(int id) {
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		s.setSelection(id);
+	}
+	
+	public void setPersoValues() {
+		boolean[] values = mEventManager.getPersoValues();
+
+		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
+		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+
+		STATUS_BAR_AT_THE_BOTTOM.setChecked(values[0]);
+		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
+		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
+		DIALER_TYPE_STREAM.setChecked(values[3]);
+		LOCK_TYPE_STREAM.setChecked(values[4]);
+		LAUNCHER_TYPE_STREAM.setChecked(values[5]);
 	}
 
 	//---------------Menu---------------//

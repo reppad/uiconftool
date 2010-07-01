@@ -18,7 +18,11 @@ public class EventManager {
 
 	private UiConfTool				mActivity;
 	private Parameters				mParam;
-	private OnClickListener 		buttonActivateCT, buttonPersoListener, buttonValidListener;
+	private OnClickListener 		buttonActivateCT,
+									buttonPersoListener,
+									buttonValidListener,
+									buttonPersoValidListener,
+									buttonPersoCancelListener;
 	private OnItemSelectedListener	spinnerListener;
 
 	/**
@@ -38,8 +42,8 @@ public class EventManager {
 
 		buttonPersoListener = new OnClickListener() {
 			public void onClick(View v) {
-				mActivity.popUp("Coming soon", 0);	//test
-				// ...
+				//mActivity.setPersoValues();	///////////
+				mActivity.setContentView(R.layout.perso);
 			}
 		};
 
@@ -68,11 +72,24 @@ public class EventManager {
 				alert.show();
 			}
 		};
+
+		buttonPersoValidListener = new OnClickListener() {
+			public void onClick(View v) {
+				// ... Enregistrer les modifs dans param
+				mActivity.setContentView(R.layout.main);
+			}
+		};
+
+		buttonPersoCancelListener = new OnClickListener() {
+			public void onClick(View v) {
+				mActivity.setContentView(R.layout.main);
+			}
+		};
 		
 		spinnerListener = new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> spinner, View arg1,
 					int position, long rowId) {
-
+				////////////deplacer/////////////////
 				switch (position) {
 					case 0:
 						mParam.setFULL_UI_ANDROID(true);
@@ -105,6 +122,7 @@ public class EventManager {
 		return mParam.readConfFile();
 	}
 	
+	////////////deplacer/////////////////
 	/**
 	 * Set spinner position
 	 */
@@ -149,8 +167,20 @@ public class EventManager {
 		return buttonValidListener;
 	}
 
+	public OnClickListener getButtonPersoValidListener() {
+		return buttonPersoValidListener;
+	}
+
+	public OnClickListener getButtonPersoCancelListener() {
+		return buttonPersoCancelListener;
+	}
+
 	public OnItemSelectedListener getSpinnerListener() {
 		return spinnerListener;
+	}
+	
+	public boolean[] getPersoValues() {
+		return mParam.getPersoValues();
 	}
 
 } //class
