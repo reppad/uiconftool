@@ -19,12 +19,15 @@ public class Perso extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perso);
+		
+//		UiConfTool parent = (UiConfTool) getParent();
+//		mEventManager = parent.getEventManager();
 
-		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
-		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
-
-		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
-		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
+//		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
+//		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
+//
+//		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
+//		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
 	}
 	
 	/**
@@ -37,25 +40,25 @@ public class Perso extends Activity {
 		toast.show();
 	}
 	
-	public void setPersoValues() {
-		boolean[] values = mEventManager.getPersoValues();
-
-		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
-		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
-		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
-		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
-		CheckBox DIALER_TYPE_AOSP = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
-		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
-		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
-
-		STATUS_BAR_AT_THE_BOTTOM.setChecked(values[0]);
-		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
-		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
-		DIALER_TYPE_STREAM.setChecked(values[3]);
-		DIALER_TYPE_AOSP.setChecked(values[4]);
-		LOCK_TYPE_STREAM.setChecked(values[5]);
-		LAUNCHER_TYPE_STREAM.setChecked(values[6]);
-	}
+//	public void setPersoValues() {
+//		boolean[] values = mEventManager.getPersoValues();
+//
+//		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+//		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+//		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+//		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
+//		CheckBox DIALER_TYPE_AOSP = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
+//		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+//		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+//
+//		STATUS_BAR_AT_THE_BOTTOM.setChecked(values[0]);
+//		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
+//		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
+//		DIALER_TYPE_STREAM.setChecked(values[3]);
+//		DIALER_TYPE_AOSP.setChecked(values[4]);
+//		LOCK_TYPE_STREAM.setChecked(values[5]);
+//		LAUNCHER_TYPE_STREAM.setChecked(values[6]);
+//	}
 
 	//---------------Menu---------------//
 	

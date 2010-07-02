@@ -22,4 +22,5 @@
 <string name="checkBoxDIALER_TYPE_AOSP">Dialer AOSP</string>
 <string name="checkBoxLOCK_TYPE_STREAM">Ecran de verrouillage Stream</string>
 <string name="checkBoxLAUNCHER_TYPE_STREAM">Lanceur Stream</string>
+<string name="PersonalisationWindow">Personnalisation</string>
 </resources>

@@ -108,7 +108,11 @@ public class UiConfTool extends Activity {
         Intent i = new Intent(this, Perso.class);
         startActivity(i);
     }
-
+    
+    public EventManager getEventManager() {
+    	return mEventManager;
+    }
+    
 	//---------------Menu---------------//
 	
 	/* Creates the menu items */
