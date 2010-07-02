@@ -109,6 +109,13 @@ public class UiConfTool extends Activity {
         startActivity(i);
     }
     
+    @Override
+    protected void onStop() {
+    	popUp("penser a sauvegarder", 0);	//TEST
+    	// ...
+    	super.onStop();
+    }
+    
     public EventManager getEventManager() {
     	return mEventManager;
     }
