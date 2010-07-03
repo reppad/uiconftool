@@ -242,7 +242,7 @@ public class UiConfTool extends Activity {
 	    	mEventManager.resetConfiguration();
 	        return true;
 	    case 1:
-	    	popUp("2010  V1.0.0\ngrandgto@gmail.com", 1);
+	    	popUp("2010  V1.0.1\ngrandgto@gmail.com", 1);
 	        return true;
 	    }
 	    return false;
