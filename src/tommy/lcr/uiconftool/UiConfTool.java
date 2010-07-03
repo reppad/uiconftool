@@ -238,6 +238,7 @@ public class UiConfTool extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	    case 0:
+	    	launchMain();
 	    	mEventManager.resetConfiguration();
 	        return true;
 	    case 1:
