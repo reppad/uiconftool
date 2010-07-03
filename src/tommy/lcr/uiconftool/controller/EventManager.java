@@ -3,11 +3,13 @@ package tommy.lcr.uiconftool.controller;
 import tommy.lcr.uiconftool.R;
 import tommy.lcr.uiconftool.UiConfTool;
 import tommy.lcr.uiconftool.model.Parameters;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import tommy.lcr.uiconftool.model.Parameters.UIType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
@@ -24,6 +26,7 @@ public class EventManager {
 									buttonPersoValidListener,
 									buttonPersoCancelListener;
 	private OnItemSelectedListener	spinnerListener;
+	private OnCheckedChangeListener	checkedChangeListener;
 
 	/**
 	 * Default constructor
@@ -43,53 +46,46 @@ public class EventManager {
 		buttonPersoListener = new OnClickListener() {
 			public void onClick(View v) {
 				mActivity.launchPerso();
-//				mActivity.setPersoValues();	///////////
 			}
 		};
 
 		buttonValidListener = new OnClickListener() {
 			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-				builder.setMessage(R.string.alert_confirmMsg)
-						.setCancelable(false)
-						.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								mParam.applyConfiguration();
-								mActivity.finish();
-							}
-						})
-						.setNeutralButton(R.string.no, new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								mActivity.finish();
-							}
-						})
-						.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								dialog.cancel();
-							}
-						});
-				AlertDialog alert = builder.create();
-				alert.show();
+				mActivity.showQuitMsg();
 			}
 		};
 
 		buttonPersoValidListener = new OnClickListener() {
 			public void onClick(View v) {
-				// ... Enregistrer les modifs dans param
-				mActivity.setContentView(R.layout.main);
+				CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+				CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+				CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+				CheckBox DIALER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
+				CheckBox DIALER_TYPE_AOSP = (CheckBox) mActivity.findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
+				CheckBox LOCK_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+				CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+				
+				mParam.setSTATUS_BAR_AT_THE_BOTTOM(STATUS_BAR_AT_THE_BOTTOM.isChecked());
+				mParam.setNOTIFICATION_TYPE_STREAM(NOTIFICATION_TYPE_STREAM.isChecked());
+				mParam.setSTREAM_NOTIFICATION_ON_TOP(STREAM_NOTIFICATION_ON_TOP.isChecked());
+				mParam.setDIALER_TYPE_STREAM(DIALER_TYPE_STREAM.isChecked());
+				mParam.setDIALER_TYPE_AOSP(DIALER_TYPE_AOSP.isChecked());
+				mParam.setLOCK_TYPE_STREAM(LOCK_TYPE_STREAM.isChecked());
+				mParam.setLAUNCHER_TYPE_STREAM(LAUNCHER_TYPE_STREAM.isChecked());
+				
+				mActivity.launchMain();
 			}
 		};
 
 		buttonPersoCancelListener = new OnClickListener() {
 			public void onClick(View v) {
-				mActivity.setContentView(R.layout.main);
+				mActivity.launchMain();
 			}
 		};
 		
 		spinnerListener = new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> spinner, View arg1,
 					int position, long rowId) {
-				////////////deplacer/////////////////
 				switch (position) {
 					case 0:
 						mParam.setFULL_UI_ANDROID(true);
@@ -112,6 +108,13 @@ public class EventManager {
 				//nothing to do
 			}
 		};
+		
+		checkedChangeListener = new OnCheckedChangeListener() {
+			
+			public void onCheckedChanged(CompoundButton checkBox, boolean checked) {
+				mActivity.setCheckBoxSTREAM_NOTIFICATION_ON_TOPState(checked);
+			}
+		};
 	} //constructor
 
 	/**
@@ -122,37 +125,24 @@ public class EventManager {
 		return mParam.readConfFile();
 	}
 	
-	////////////deplacer/////////////////
-	/**
-	 * Set spinner position
-	 */
-	public void setSpinnerPosition() {
-		switch (mParam.getUIType()) {
-		case ANDROID:
-			mActivity.setSpinnerSelectedItem(0);
-			break;
-		case ACER:
-			mActivity.setSpinnerSelectedItem(1);
-			break;
-		case PERSO:
-			mActivity.setSpinnerSelectedItem(2);
-			break;
-		default:
-			//impossible case
-			break;
-		}
-	}
-	
 	public void resetConfiguration() {
 		mParam.resetConfiguration();
-		setSpinnerPosition();
+		mActivity.setSpinnerPosition();
 		mActivity.refresh();
+	}
+	
+	public void applyConfiguration() {
+		mParam.applyConfiguration();
 	}
 
 	//--------------Getters----------------//
 	
 	public Parameters.State getUIState() {
 		return mParam.getUIState();
+	}
+	
+	public UIType getUIType() {
+		return mParam.getUIType();
 	}
 
 	public OnClickListener getButtonActivateCT() {
@@ -177,6 +167,10 @@ public class EventManager {
 
 	public OnItemSelectedListener getSpinnerListener() {
 		return spinnerListener;
+	}
+
+	public OnCheckedChangeListener getCheckedChangeListener() {
+		return checkedChangeListener;
 	}
 	
 	public boolean[] getPersoValues() {

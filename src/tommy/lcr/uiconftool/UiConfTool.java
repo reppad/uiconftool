@@ -3,7 +3,8 @@ package tommy.lcr.uiconftool;
 import tommy.lcr.uiconftool.controller.EventManager;
 import tommy.lcr.uiconftool.model.Parameters;
 import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +25,22 @@ public class UiConfTool extends Activity {
 
 	private EventManager mEventManager;
 
-	@Override
+	/**
+	 * Launch at activity starting
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.main);
-		
 		mEventManager = new EventManager(this);
+		mEventManager.readParam();
+		launchMain();
+	}
+	
+	/**
+	 * Launch main interface
+	 */
+	public void launchMain() {
+		setContentView(R.layout.main);
 
 		Button ButtonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
 		ButtonActivateCT.setOnClickListener(mEventManager.getButtonActivateCT());
@@ -47,9 +58,26 @@ public class UiConfTool extends Activity {
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
 		
-		mEventManager.readParam();
-		mEventManager.setSpinnerPosition();
+		setSpinnerPosition();
 		refresh();
+	}
+	
+	/**
+	 * Launch personalization interface
+	 */
+	public void launchPerso() {
+		setContentView(R.layout.perso);
+		
+		CheckBox checkBoxNOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+		checkBoxNOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeListener());
+
+		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
+		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
+
+		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
+		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
+		
+		setPersoValues();
 	}
 	
 	/**
@@ -87,6 +115,30 @@ public class UiConfTool extends Activity {
 	}
 	
 	/**
+	 * Set value personalization checkbox state
+	 */
+	public void setPersoValues() {
+		boolean[] values = mEventManager.getPersoValues();
+
+		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
+		CheckBox DIALER_TYPE_AOSP = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
+		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+
+		STATUS_BAR_AT_THE_BOTTOM.setChecked(values[0]);
+		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
+		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
+		setCheckBoxSTREAM_NOTIFICATION_ON_TOPState(values[1]);
+		DIALER_TYPE_STREAM.setChecked(values[3]);
+		DIALER_TYPE_AOSP.setChecked(values[4]);
+		LOCK_TYPE_STREAM.setChecked(values[5]);
+		LAUNCHER_TYPE_STREAM.setChecked(values[6]);
+	}
+	
+	/**
 	 * Show a popup message
 	 * @param msg Displayed text
 	 * @param duration 1 for long, 0 for short
@@ -96,43 +148,100 @@ public class UiConfTool extends Activity {
 		toast.show();
 	}
 	
+	/**
+	 * Set spinner selected item
+	 * @param id selected value
+	 */
 	public void setSpinnerSelectedItem(int id) {
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		s.setSelection(id);
 	}
+
+	/**
+	 * Set spinner position
+	 */
+	public void setSpinnerPosition() {
+		switch (mEventManager.getUIType()) {
+		case ANDROID:
+			setSpinnerSelectedItem(0);
+			break;
+		case ACER:
+			setSpinnerSelectedItem(1);
+			break;
+		case PERSO:
+			setSpinnerSelectedItem(2);
+			break;
+		default:
+			//impossible case
+			break;
+		}
+	}
 	
-    /**
-     * Launches the Perso activity to custom the phone interface
-     */
-    public void launchPerso() {
-        Intent i = new Intent(this, Perso.class);
-        startActivity(i);
-    }
+	/**
+	 * Set checkBox "Stream notification on top" state
+	 * @param state checked
+	 */
+	public void setCheckBoxSTREAM_NOTIFICATION_ON_TOPState(boolean state) {
+		CheckBox checkBoxSTREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+		checkBoxSTREAM_NOTIFICATION_ON_TOP.setEnabled(state);
+	}
     
-    @Override
-    protected void onStop() {
-    	popUp("penser a sauvegarder", 0);	//TEST
-    	// ...
-    	super.onStop();
-    }
-    
+	/**
+	 * Get event Manager
+	 * @return mEventManager
+	 */
     public EventManager getEventManager() {
     	return mEventManager;
     }
     
+    /**
+     * Show confirm message on exit
+     */
+    public void showQuitMsg() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.alert_confirmMsg)
+				.setCancelable(false)
+				.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						mEventManager.applyConfiguration();
+						finish();
+					}
+				})
+				.setNeutralButton(R.string.no, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						finish();
+					}
+				})
+				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+    }
+    
 	//---------------Menu---------------//
 	
-	/* Creates the menu items */
+	/**
+	 *  Creates the menu items
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    menu.add(0, 0, 0, R.string.reinitFile);
+	    menu.add(0, 1, 1, R.string.about);
 	    return true;
 	}
 
-	/* Handles item selections */
+	/**
+	 *  Handles item selections
+	 */
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	    case 0:
 	    	mEventManager.resetConfiguration();
+	        return true;
+	    case 1:
+	    	popUp("2010  V1.0.0\ngrandgto@gmail.com", 1);
 	        return true;
 	    }
 	    return false;

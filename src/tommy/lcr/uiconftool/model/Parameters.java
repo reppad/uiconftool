@@ -380,6 +380,11 @@ public class Parameters {
 		return ret;
 	}
 	
+	/**
+	 * Convert boolean value to String value
+	 * @param param Boolean value
+	 * @return String value
+	 */
 	private String getStringValue(boolean param) {
 		if(param)
 			return "1";

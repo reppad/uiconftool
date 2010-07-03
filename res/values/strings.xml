@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="app_name">UI conf tool for LCR 1.7</string>
 
-<string name="main_activateCT">Activer UI Conf Tool</string>
-<string name="main_desactivateCT">Désactiver UI Conf Tool</string>
-<string name="main_interfaceType">Type d\'interface :</string>
-<string name="main_ButtonPerso">Personnaliser</string>
-<string name="main_buttonValid">Quitter / Enregistrer</string>
-<string name="main_listInterfaces">Choisissez une interface</string>
-<string name="alert_confirmMsg">Enregistrer les modifications?\n\n(Les changement effectués seront appliqués au prochain demarrage du téléphone)</string>
-<string name="cancel">Annuler</string>
-<string name="yes">Oui</string>
-<string name="no">Non</string>
-<string name="valid">Valider</string>
-<string name="reinitFile">Reinitialiser la configuration</string>
-<string name="checkBoxSTATUS_BAR_AT_THE_BOTTOM">Barre de status en bas</string>
-<string name="checkBoxNOTIFICATION_TYPE_STREAM">Notifications Stream</string>
-<string name="checkBoxSTREAM_NOTIFICATION_ON_TOP">Notifications Stream en haut\n(Notifications Stream doit être activé)</string>
-<string name="checkBoxDIALER_TYPE_STREAM">Dialer Stream</string>
-<string name="checkBoxDIALER_TYPE_AOSP">Dialer AOSP</string>
-<string name="checkBoxLOCK_TYPE_STREAM">Ecran de verrouillage Stream</string>
-<string name="checkBoxLAUNCHER_TYPE_STREAM">Lanceur Stream</string>
-<string name="PersonalisationWindow">Personnalisation</string>
+	<string name="app_name">UI conf tool for LCR 1.7</string>
+
+	<string name="main_activateCT">Activate UI Conf Tool</string>
+	<string name="main_desactivateCT">Deactivate UI Conf Tool</string>
+	<string name="main_interfaceType">Interface type :</string>
+	<string name="main_ButtonPerso">Personalized</string>
+	<string name="main_buttonValid">Quit / Save</string>
+	<string name="main_listInterfaces">Choose interface</string>
+	<string name="alert_confirmMsg">Save changes ?\n\n(changes will be applied at next boot)</string>
+	<string name="cancel">Cancel</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="valid">Valid</string>
+	<string name="reinitFile">Reset configuration</string>
+	<string name="about">About</string>
+	<string name="checkBoxSTATUS_BAR_AT_THE_BOTTOM">Status bar at the bottom</string>
+	<string name="checkBoxNOTIFICATION_TYPE_STREAM">Notification type Stream</string>
+	<string name="checkBoxSTREAM_NOTIFICATION_ON_TOP">Stream notification on top</string>
+	<string name="checkBoxDIALER_TYPE_STREAM">Dialer type Stream</string>
+	<string name="checkBoxDIALER_TYPE_AOSP">Dialer type AOSP</string>
+	<string name="checkBoxLOCK_TYPE_STREAM">Lock type Stream</string>
+	<string name="checkBoxLAUNCHER_TYPE_STREAM">Launcher type Stream</string>
+	<string name="PersonalisationWindow">personalization</string>
 </resources>

@@ -28,7 +28,8 @@
 		<CheckBox android:text="@string/checkBoxSTREAM_NOTIFICATION_ON_TOP"
 			android:id="@+id/CheckBoxSTREAM_NOTIFICATION_ON_TOP"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20px"></CheckBox>
 	</TableRow>
 
 	<TableRow>
@@ -59,7 +60,7 @@
 			android:layout_height="wrap_content"></CheckBox>
 	</TableRow>
 
-	<TableRow android:layout_marginTop="20px">
+	<TableRow android:layout_marginTop="50px">
 		<Button android:text="@string/valid"
 			android:id="@+id/ButtonPersoValid"
 			android:layout_width="wrap_content"
