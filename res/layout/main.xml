@@ -37,12 +37,33 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:layout_marginTop="20px"></Button>
+
+	<ImageView android:id="@+id/ImageViewPersoTop"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:src="@drawable/top"
+		android:layout_marginTop="30px"></ImageView>
+		
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="wrap_content"
+		android:layout_height="60px">
+		<TextView android:id="@+id/TextViewPersoHelp"
+			android:text="@string/help_fullUiAcer"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:gravity="center_horizontal"></TextView>
+	</ScrollView>
+		
+	<ImageView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/ImageViewPersoBottom"
+		android:src="@drawable/bottom"></ImageView>
 	
 	<Button android:text="@string/main_buttonValid"
 		android:id="@+id/ButtonValid"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="100px"></Button>
+		android:layout_marginTop="20px"></Button>
 		
 </LinearLayout>

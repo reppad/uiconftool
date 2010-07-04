@@ -1,69 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
 	android:layout_width="wrap_content"
-	android:layout_height="wrap_content">
+	android:layout_height="wrap_content"
+	android:layout_gravity="center_horizontal">
 
-	<TableRow>
-		<ImageView android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/ImageViewPersoTitle"
-			android:src="@drawable/bandeau_titre"></ImageView>
-	</TableRow>
+	<ImageView android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/ImageViewPersoTitle"
+		android:src="@drawable/bandeau_titre"></ImageView>
 
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxSTATUS_BAR_AT_THE_BOTTOM"
-			android:id="@+id/CheckBoxSTATUS_BAR_AT_THE_BOTTOM"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
+	<CheckBox android:text="@string/checkBoxSTATUS_BAR_AT_THE_BOTTOM"
+		android:id="@+id/CheckBoxSTATUS_BAR_AT_THE_BOTTOM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10px"></CheckBox>
 
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxNOTIFICATION_TYPE_STREAM"
-			android:id="@+id/CheckBoxNOTIFICATION_TYPE_STREAM"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
+	<CheckBox android:text="@string/checkBoxNOTIFICATION_TYPE_STREAM"
+		android:id="@+id/CheckBoxNOTIFICATION_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10px"></CheckBox>
 
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxSTREAM_NOTIFICATION_ON_TOP"
-			android:id="@+id/CheckBoxSTREAM_NOTIFICATION_ON_TOP"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="20px"></CheckBox>
-	</TableRow>
+	<CheckBox android:text="@string/checkBoxSTREAM_NOTIFICATION_ON_TOP"
+		android:id="@+id/CheckBoxSTREAM_NOTIFICATION_ON_TOP"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30px"></CheckBox>
 
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxLOCK_TYPE_STREAM"
-			android:id="@+id/CheckBoxLOCK_TYPE_STREAM"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
+	<CheckBox android:text="@string/checkBoxLOCK_TYPE_STREAM"
+		android:id="@+id/CheckBoxLOCK_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10px"></CheckBox>
 
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxLAUNCHER_TYPE_STREAM"
-			android:id="@+id/CheckBoxLAUNCHER_TYPE_STREAM"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
+	<CheckBox android:text="@string/checkBoxLAUNCHER_TYPE_STREAM"
+		android:id="@+id/CheckBoxLAUNCHER_TYPE_STREAM"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10px"></CheckBox>
 
-	<TableRow>
-		<Spinner android:id="@+id/SpinnerDialerType"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:prompt="@string/perso_listDialer"></Spinner>
-	</TableRow>
+	<Spinner android:id="@+id/SpinnerDialerType"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:prompt="@string/perso_listDialer"
+		android:layout_marginLeft="10px"></Spinner>
 
-	<TableRow android:layout_marginTop="50px">
-		<Button android:text="@string/valid"
-			android:id="@+id/ButtonPersoValid"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"></Button>
+	<ImageView android:id="@+id/ImageViewPersoTop"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:src="@drawable/top"></ImageView>
+		
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="wrap_content"
+		android:layout_height="60px">
+		<TextView android:id="@+id/TextViewPersoHelp"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:gravity="center_horizontal"></TextView>
+	</ScrollView>
+		
+	<ImageView android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/ImageViewPersoBottom"
+		android:src="@drawable/bottom"></ImageView>
+		
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10px">
 
-		<Button android:text="@string/cancel"
-			android:id="@+id/ButtonPersoCancel"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></Button>
-	</TableRow>
+		<TableRow>
+			<Button android:text="@string/valid"
+				android:id="@+id/ButtonPersoValid"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"></Button>
+	
+			<Button android:text="@string/cancel"
+				android:id="@+id/ButtonPersoCancel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></Button>
+		</TableRow>
+	</TableLayout>
 
-</TableLayout>
+
+</LinearLayout>

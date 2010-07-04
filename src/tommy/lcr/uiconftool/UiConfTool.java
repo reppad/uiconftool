@@ -69,7 +69,7 @@ public class UiConfTool extends Activity {
 		setContentView(R.layout.perso);
 		
 		CheckBox checkBoxNOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
-		checkBoxNOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeListener());
+		checkBoxNOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamNotifications());
 
 		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
 		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
@@ -82,8 +82,23 @@ public class UiConfTool extends Activity {
 	            this, R.array.dialers, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
+		s.setOnItemSelectedListener(mEventManager.getSpinnerDialerListener());
+		
+
+		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+		
+		STATUS_BAR_AT_THE_BOTTOM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamElements());
+		NOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamNotifications());
+		STREAM_NOTIFICATION_ON_TOP.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamElements());
+		LOCK_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeLockTypeStream());
+		LAUNCHER_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeLauncherTypeStream());
 		
 		setPersoValues();
+		setPersoHelp(R.string.help_streamElements);
 	}
 	
 	/**
@@ -194,6 +209,15 @@ public class UiConfTool extends Activity {
 		CheckBox checkBoxSTREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
 		checkBoxSTREAM_NOTIFICATION_ON_TOP.setEnabled(state);
 	}
+	
+	/**
+	 * Set the help message
+	 * @param resId ID du message à afficher
+	 */
+	public void setPersoHelp(int resId) {
+		TextView helpMsg = (TextView) findViewById(R.id.TextViewPersoHelp);
+		helpMsg.setText(resId);
+	}
     
 	/**
 	 * Get event Manager
@@ -251,7 +275,7 @@ public class UiConfTool extends Activity {
 	    	mEventManager.resetConfiguration();
 	        return true;
 	    case 1:
-	    	popUp("2010  V1.0.2\ngrandgto@gmail.com", 1);
+	    	popUp("2010  V1.1.0\ngrandgto@gmail.com", 1);
 	        return true;
 	    }
 	    return false;
