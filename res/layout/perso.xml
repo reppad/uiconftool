@@ -33,20 +33,6 @@
 	</TableRow>
 
 	<TableRow>
-		<CheckBox android:text="@string/checkBoxDIALER_TYPE_STREAM"
-			android:id="@+id/CheckBoxDIALER_TYPE_STREAM"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
-
-	<TableRow>
-		<CheckBox android:text="@string/checkBoxDIALER_TYPE_AOSP"
-			android:id="@+id/CheckBoxDIALER_TYPE_AOSP"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"></CheckBox>
-	</TableRow>
-
-	<TableRow>
 		<CheckBox android:text="@string/checkBoxLOCK_TYPE_STREAM"
 			android:id="@+id/CheckBoxLOCK_TYPE_STREAM"
 			android:layout_width="wrap_content"
@@ -58,6 +44,13 @@
 			android:id="@+id/CheckBoxLAUNCHER_TYPE_STREAM"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"></CheckBox>
+	</TableRow>
+
+	<TableRow>
+		<Spinner android:id="@+id/SpinnerDialerType"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:prompt="@string/perso_listDialer"></Spinner>
 	</TableRow>
 
 	<TableRow android:layout_marginTop="50px">
@@ -72,6 +65,5 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"></Button>
 	</TableRow>
-
 
 </TableLayout>

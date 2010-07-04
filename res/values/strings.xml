@@ -19,9 +19,8 @@
 	<string name="checkBoxSTATUS_BAR_AT_THE_BOTTOM">Status bar at the bottom</string>
 	<string name="checkBoxNOTIFICATION_TYPE_STREAM">Notification type Stream</string>
 	<string name="checkBoxSTREAM_NOTIFICATION_ON_TOP">Stream notification on top</string>
-	<string name="checkBoxDIALER_TYPE_STREAM">Dialer type Stream</string>
-	<string name="checkBoxDIALER_TYPE_AOSP">Dialer type AOSP</string>
 	<string name="checkBoxLOCK_TYPE_STREAM">Lock type Stream</string>
 	<string name="checkBoxLAUNCHER_TYPE_STREAM">Launcher type Stream</string>
 	<string name="PersonalisationWindow">personalization</string>
+	<string name="perso_listDialer">Choose dialer</string>
 </resources>

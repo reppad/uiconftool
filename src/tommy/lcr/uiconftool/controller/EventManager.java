@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Spinner;
 
 /**
  * Event manager
@@ -25,7 +26,8 @@ public class EventManager {
 									buttonValidListener,
 									buttonPersoValidListener,
 									buttonPersoCancelListener;
-	private OnItemSelectedListener	spinnerListener;
+	private OnItemSelectedListener	spinnerInterfaceListener,
+									spinnerDialerListener;
 	private OnCheckedChangeListener	checkedChangeListener;
 
 	/**
@@ -60,18 +62,33 @@ public class EventManager {
 				CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
 				CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
 				CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
-				CheckBox DIALER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
-				CheckBox DIALER_TYPE_AOSP = (CheckBox) mActivity.findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
+				Spinner dialer = (Spinner) mActivity.findViewById(R.id.SpinnerDialerType);
 				CheckBox LOCK_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
 				CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
 				
 				mParam.setSTATUS_BAR_AT_THE_BOTTOM(STATUS_BAR_AT_THE_BOTTOM.isChecked());
 				mParam.setNOTIFICATION_TYPE_STREAM(NOTIFICATION_TYPE_STREAM.isChecked());
 				mParam.setSTREAM_NOTIFICATION_ON_TOP(STREAM_NOTIFICATION_ON_TOP.isChecked());
-				mParam.setDIALER_TYPE_STREAM(DIALER_TYPE_STREAM.isChecked());
-				mParam.setDIALER_TYPE_AOSP(DIALER_TYPE_AOSP.isChecked());
 				mParam.setLOCK_TYPE_STREAM(LOCK_TYPE_STREAM.isChecked());
 				mParam.setLAUNCHER_TYPE_STREAM(LAUNCHER_TYPE_STREAM.isChecked());
+				
+				int selected = dialer.getSelectedItemPosition();
+				switch (selected) {
+				case 0:
+					mParam.setDIALER_TYPE_STREAM(false);
+					mParam.setDIALER_TYPE_AOSP(false);
+					break;
+				case 1:
+					mParam.setDIALER_TYPE_STREAM(true);
+					mParam.setDIALER_TYPE_AOSP(false);
+					break;
+				case 2:
+					mParam.setDIALER_TYPE_STREAM(false);
+					mParam.setDIALER_TYPE_AOSP(true);
+					break;
+				default:
+					break;
+			}
 				
 				mActivity.launchMain();
 			}
@@ -83,7 +100,7 @@ public class EventManager {
 			}
 		};
 		
-		spinnerListener = new OnItemSelectedListener() {
+		spinnerInterfaceListener = new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> spinner, View arg1,
 					int position, long rowId) {
 				switch (position) {
@@ -127,7 +144,7 @@ public class EventManager {
 	
 	public void resetConfiguration() {
 		mParam.resetConfiguration();
-		mActivity.setSpinnerPosition();
+		mActivity.setInterfaceSpinnerPosition();
 		mActivity.refresh();
 	}
 	
@@ -165,8 +182,12 @@ public class EventManager {
 		return buttonPersoCancelListener;
 	}
 
-	public OnItemSelectedListener getSpinnerListener() {
-		return spinnerListener;
+	public OnItemSelectedListener getSpinnerInterfaceListener() {
+		return spinnerInterfaceListener;
+	}
+
+	public OnItemSelectedListener getSpinnerDialerListener() {
+		return spinnerDialerListener;
 	}
 
 	public OnCheckedChangeListener getCheckedChangeListener() {

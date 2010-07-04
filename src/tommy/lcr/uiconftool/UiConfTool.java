@@ -50,7 +50,7 @@ public class UiConfTool extends Activity {
 	            this, R.array.interfaces, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
-		s.setOnItemSelectedListener(mEventManager.getSpinnerListener());
+		s.setOnItemSelectedListener(mEventManager.getSpinnerInterfaceListener());
 
 		Button ButtonPerso = (Button) findViewById(R.id.ButtonPerso);
 		ButtonPerso.setOnClickListener(mEventManager.getButtonPersoListener());
@@ -58,7 +58,7 @@ public class UiConfTool extends Activity {
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
 		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
 		
-		setSpinnerPosition();
+		setInterfaceSpinnerPosition();
 		refresh();
 	}
 	
@@ -76,6 +76,12 @@ public class UiConfTool extends Activity {
 
 		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
 		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
+
+		Spinner s = (Spinner) findViewById(R.id.SpinnerDialerType);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+	            this, R.array.dialers, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		s.setAdapter(adapter);
 		
 		setPersoValues();
 	}
@@ -123,19 +129,30 @@ public class UiConfTool extends Activity {
 		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
 		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
 		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
-		CheckBox DIALER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_STREAM);
-		CheckBox DIALER_TYPE_AOSP = (CheckBox) findViewById(R.id.CheckBoxDIALER_TYPE_AOSP);
 		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
 		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+		Spinner s = (Spinner) findViewById(R.id.SpinnerDialerType);
 
 		STATUS_BAR_AT_THE_BOTTOM.setChecked(values[0]);
 		NOTIFICATION_TYPE_STREAM.setChecked(values[1]);
 		STREAM_NOTIFICATION_ON_TOP.setChecked(values[2]);
 		setCheckBoxSTREAM_NOTIFICATION_ON_TOPState(values[1]);
-		DIALER_TYPE_STREAM.setChecked(values[3]);
-		DIALER_TYPE_AOSP.setChecked(values[4]);
 		LOCK_TYPE_STREAM.setChecked(values[5]);
 		LAUNCHER_TYPE_STREAM.setChecked(values[6]);
+		
+		if(values[3] && values[4]) {
+			//dialer AOSP
+			s.setSelection(2);
+		} else if(values[3] && !values[4]) {
+			//dialer Stream
+			s.setSelection(1);
+		} else if(!values[3] && values[4]) {
+			//dialer AOSP
+			s.setSelection(2);
+		} else if(!values[3] && !values[4]) {
+			//dialer Android
+			s.setSelection(0);
+		}
 	}
 	
 	/**
@@ -147,29 +164,21 @@ public class UiConfTool extends Activity {
 		Toast toast = Toast.makeText(getApplicationContext(), msg, duration);
 		toast.show();
 	}
-	
-	/**
-	 * Set spinner selected item
-	 * @param id selected value
-	 */
-	public void setSpinnerSelectedItem(int id) {
-		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
-		s.setSelection(id);
-	}
 
 	/**
-	 * Set spinner position
+	 * Set interface spinner position
 	 */
-	public void setSpinnerPosition() {
+	public void setInterfaceSpinnerPosition() {
+		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		switch (mEventManager.getUIType()) {
 		case ANDROID:
-			setSpinnerSelectedItem(0);
+			s.setSelection(0);
 			break;
 		case ACER:
-			setSpinnerSelectedItem(1);
+			s.setSelection(1);
 			break;
 		case PERSO:
-			setSpinnerSelectedItem(2);
+			s.setSelection(2);
 			break;
 		default:
 			//impossible case

@@ -13,12 +13,10 @@
 <string name="no">Non</string>
 <string name="valid">Valider</string>
 <string name="reinitFile">Reinitialiser la configuration</string>
-	<string name="about">A propos</string>
+<string name="about">A propos</string>
 <string name="checkBoxSTATUS_BAR_AT_THE_BOTTOM">Barre de status en bas</string>
 <string name="checkBoxNOTIFICATION_TYPE_STREAM">Notifications Stream</string>
 <string name="checkBoxSTREAM_NOTIFICATION_ON_TOP">Notifications Stream en haut</string>
-<string name="checkBoxDIALER_TYPE_STREAM">Dialer Stream</string>
-<string name="checkBoxDIALER_TYPE_AOSP">Dialer AOSP</string>
 <string name="checkBoxLOCK_TYPE_STREAM">Ecran de verrouillage Stream</string>
 <string name="checkBoxLAUNCHER_TYPE_STREAM">Lanceur Stream</string>
 <string name="PersonalisationWindow">Personnalisation</string>
