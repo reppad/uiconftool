@@ -286,7 +286,7 @@ public class UiConfTool extends Activity {
 	    	mEventManager.resetConfiguration();
 	        return true;
 	    case 1:
-	    	popUp("2010  V1.1.1\ngrandgto@gmail.com", 1);
+	    	popUp("2010  V1.1.2\ngrandgto@gmail.com", 1);
 	        return true;
 	    case 2:
 	    	launchUpdateView();
