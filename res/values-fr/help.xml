@@ -3,8 +3,7 @@
 	<string name="help_streamElements">Les éléments Stream consomment beaucoup de batterie</string>
 	<string name="help_fullUiAcer">L\'interface Acer Stream consomme beaucoup de batterie.\nIl est nécessaire de supprimer puis de remettre vos widgets après un changement d\'interface.</string>
 	<string name="help_streamNotifications">Les notifications Stream consomment beaucoup de batterie</string>
-	<string name="help_dialerStream">Les modifications des images de contacts ne fonctionnent pas avec le dialer Stream</string>
-	<string name="help_dialerAOSP">Le dialer AOSP est plus rapide mais il possède moins d\'option.</string>
+	<string name="help_dialerAOSP">Le dialer AOSP est plus rapide mais il possède moins d\'option</string>
 	<string name="help_lockTypeStream">L\'écran de verrouillage Stream cause des problèmes de rafraichissement pour les widgets</string>
 	<string name="help_launcherTypeStream">Si vous voulez utiliser breeze launcher et que votre barre de status ne fonctionne pas, Cochez \"Lanceur Stream\".\nEnsuite selectionnez Acer_UI dans le menu Paramètres/Applications/InterfaceUtilisateur de votre téléphone.\nCeci désactivera les notifications Android.\nPour désactiver, décocher \"Lanceur Stream\" et selectionnez Android_UI dans le menu Paramètres/Applications/InterfaceUtilisateur.</string>
 </resources>

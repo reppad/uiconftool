@@ -332,7 +332,7 @@ public class Parameters {
 		"# Dialer and Lock screen\n" +
 		"#\n" +
 		"############################################\n" +
-		"#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer Contact's picture modification won't work (change in gallery)\n" +
+		"#DIALER_TYPE_STREAM : What kind of dialer (phone call) to use / 0=>Android default dialer / 1=>Stream dialer\n" +
 		"|DIALER_TYPE_STREAM|" + getStringValue(DIALER_TYPE_STREAM) + "|\n" +
 		"\n" +
 		"#|DIALER_TYPE_AOSP|0| : Do you want to use the standard AOSP dialer, not the acer one. It is faster but with less options. \n" +

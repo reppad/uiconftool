@@ -3,7 +3,6 @@
 	<string name="help_streamElements">Stream elements use a lot of battery</string>
 	<string name="help_fullUiAcer">Full UI Acer Stream use a lot of battery.\nYou must delete and re-add your widgets after changing UI</string>
 	<string name="help_streamNotifications">Stream notifications use a lot of battery</string>
-	<string name="help_dialerStream">Contact\'s picture modification won\'t work with Stream dialer (change in gallery)</string>
 	<string name="help_dialerAOSP">AOSP dialer is faster but with less options</string>
 	<string name="help_lockTypeStream">Lock type Stream will break widget refresh on desktop on reboot</string>
 	<string name="help_launcherTypeStream">If you want use breeze launcher and your status bar does not work, check \"Launcher type stream\".\nThen change user interface in Settings/Application/UI to Acer_UI on your phone.\nEnabling this will disable ANDROID type notifications.\nTo disable, uncheck and change user interface in Settings/Application/UI to Android_UI on your phone.</string>

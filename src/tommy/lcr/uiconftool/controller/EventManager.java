@@ -119,7 +119,7 @@ public class EventManager {
 					case 1:
 						mParam.setDIALER_TYPE_STREAM(true);
 						mParam.setDIALER_TYPE_AOSP(false);
-						mActivity.setPersoHelp(R.string.help_dialerStream);
+						mActivity.setPersoHelp(R.string.help_streamElements);
 						break;
 					case 2:
 						mParam.setDIALER_TYPE_STREAM(false);
