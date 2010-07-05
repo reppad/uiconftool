@@ -5,6 +5,7 @@ import tommy.lcr.uiconftool.model.Parameters;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,7 @@ public class UiConfTool extends Activity {
 		mEventManager = new EventManager(this);
 		mEventManager.readParam();
 		launchMain();
+
 	}
 	
 	/**
@@ -253,6 +255,14 @@ public class UiConfTool extends Activity {
 		AlertDialog alert = builder.create();
 		alert.show();
     }
+
+    /**
+     * Launches the Update activity to add a new contact to the selected accont.
+     */
+    protected void launchUpdateView() {
+        Intent i = new Intent(this, UpdateView.class);
+        startActivity(i);
+    }
     
 	//---------------Menu---------------//
 	
@@ -262,6 +272,7 @@ public class UiConfTool extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    menu.add(0, 0, 0, R.string.reinitFile);
 	    menu.add(0, 1, 1, R.string.about);
+	    menu.add(0, 2, 2, R.string.updatePage);
 	    return true;
 	}
 
@@ -276,6 +287,9 @@ public class UiConfTool extends Activity {
 	        return true;
 	    case 1:
 	    	popUp("2010  V1.1.1\ngrandgto@gmail.com", 1);
+	        return true;
+	    case 2:
+	    	launchUpdateView();
 	        return true;
 	    }
 	    return false;

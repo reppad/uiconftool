@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="help_streamElements">Stream elements use a lot of battery</string>
-	<string name="help_fullUiAcer">Full UI Acer Stream will break widget update, further it use a lot of battery</string>
+	<string name="help_fullUiAcer">Full UI Acer Stream use a lot of battery.\nYou must delete and re-add your widgets after changing UI</string>
 	<string name="help_streamNotifications">Stream notifications use a lot of battery</string>
 	<string name="help_dialerStream">Contact\'s picture modification won\'t work with Stream dialer (change in gallery)</string>
 	<string name="help_dialerAOSP">AOSP dialer is faster but with less options. Contact\'s picture modification won\'t work (change in gallery)</string>
