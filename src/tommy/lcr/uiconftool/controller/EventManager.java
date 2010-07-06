@@ -55,8 +55,8 @@ public class EventManager {
 	public OnLongClickListener		onLongClickStatusBarBottom,
 									onLongClickNotificationStream,
 									onLongClickStreamNotificationOnTop,
-									OnLongClickDialer,
-									OnLongClickLockTypeStream,
+									onLongClickDialer,
+									onLongClickLockTypeStream,
 									onLongClickLauncherTypeStream;
 
 	/**
@@ -186,45 +186,39 @@ public class EventManager {
 		
 		
 		onLongClickStatusBarBottom = new OnLongClickListener() {
-			
 			public boolean onLongClick(View arg0) {
-				// TODO ...
+				mActivity.LaunchScreenshot(Screen.STATUS_BAR_AT_THE_BOTTOM);
 				return false;
 			}
 		};
 		onLongClickNotificationStream = new OnLongClickListener() {
-			
 			public boolean onLongClick(View arg0) {
-				// TODO ...
+				mActivity.LaunchScreenshot(Screen.NOTIFICATION_TYPE_STREAM);
 				return false;
 			}
 		};
 		onLongClickStreamNotificationOnTop = new OnLongClickListener() {
-			
 			public boolean onLongClick(View arg0) {
-				// TODO ...
+				mActivity.LaunchScreenshot(Screen.STREAM_NOTIFICATION_ON_TOP);
 				return false;
 			}
 		};
-		OnLongClickDialer = new OnLongClickListener() {
-			
+		onLongClickDialer = new OnLongClickListener() {
 			public boolean onLongClick(View arg0) {
 				//Attrapper l'état du spinner pour savoir quoi retourner
-				// TODO ...
+//				mActivity.LaunchScreenshot();
 				return false;
 			}
 		};
-		OnLongClickLockTypeStream = new OnLongClickListener() {
-			
+		onLongClickLockTypeStream = new OnLongClickListener() {
 			public boolean onLongClick(View arg0) {
-				// TODO ...
+				mActivity.LaunchScreenshot(Screen.LOCK_TYPE_STREAM);
 				return false;
 			}
 		};
 		onLongClickLauncherTypeStream = new OnLongClickListener() {
-			
 			public boolean onLongClick(View arg0) {
-				// TODO ...
+				mActivity.LaunchScreenshot(Screen.LAUNCHER_TYPE_STREAM);
 				return false;
 			}
 		};

@@ -100,7 +100,12 @@ public class UiConfTool extends Activity {
 		LOCK_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeLockTypeStream);
 		LAUNCHER_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeLauncherTypeStream);
 		
-//		STATUS_BAR_AT_THE_BOTTOM.setOnLongClickListener(mEventManager.testOnLongClickListener);
+		STATUS_BAR_AT_THE_BOTTOM.setOnLongClickListener(mEventManager.onLongClickStatusBarBottom);
+		NOTIFICATION_TYPE_STREAM.setOnLongClickListener(mEventManager.onLongClickNotificationStream);
+		STREAM_NOTIFICATION_ON_TOP.setOnLongClickListener(mEventManager.onLongClickStreamNotificationOnTop);
+		LOCK_TYPE_STREAM.setOnLongClickListener(mEventManager.onLongClickLockTypeStream);
+		LAUNCHER_TYPE_STREAM.setOnLongClickListener(mEventManager.onLongClickLauncherTypeStream);
+		s.setOnLongClickListener(mEventManager.onLongClickDialer);
 		
 		setPersoValues();
 		setPersoHelp(R.string.help_streamElements);
