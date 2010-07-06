@@ -1,6 +1,7 @@
 package tommy.lcr.uiconftool;
 
 import tommy.lcr.uiconftool.controller.EventManager;
+import tommy.lcr.uiconftool.controller.EventManager.Screen;
 import tommy.lcr.uiconftool.model.Parameters;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -45,20 +46,20 @@ public class UiConfTool extends Activity {
 		setContentView(R.layout.main);
 
 		Button ButtonActivateCT = (Button) findViewById(R.id.ButtonActivateCT);
-		ButtonActivateCT.setOnClickListener(mEventManager.getButtonActivateCT());
+		ButtonActivateCT.setOnClickListener(mEventManager.buttonActivateCT);
 
 		Spinner s = (Spinner) findViewById(R.id.SpinnerInterfaces);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	            this, R.array.interfaces, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
-		s.setOnItemSelectedListener(mEventManager.getSpinnerInterfaceListener());
+		s.setOnItemSelectedListener(mEventManager.spinnerInterfaceListener);
 
 		Button ButtonPerso = (Button) findViewById(R.id.ButtonPerso);
-		ButtonPerso.setOnClickListener(mEventManager.getButtonPersoListener());
+		ButtonPerso.setOnClickListener(mEventManager.buttonPersoListener);
 
 		Button ButtonValid = (Button) findViewById(R.id.ButtonValid);
-		ButtonValid.setOnClickListener(mEventManager.getButtonValidListener());
+		ButtonValid.setOnClickListener(mEventManager.buttonValidListener);
 		
 		setInterfaceSpinnerPosition();
 		refresh();
@@ -71,20 +72,20 @@ public class UiConfTool extends Activity {
 		setContentView(R.layout.perso);
 		
 		CheckBox checkBoxNOTIFICATION_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
-		checkBoxNOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamNotifications());
+		checkBoxNOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeStreamNotifications);
 
 		Button ButtonPersoValid = (Button) findViewById(R.id.ButtonPersoValid);
-		ButtonPersoValid.setOnClickListener(mEventManager.getButtonPersoValidListener());
+		ButtonPersoValid.setOnClickListener(mEventManager.buttonPersoValidListener);
 
 		Button ButtonPersoCancel = (Button) findViewById(R.id.ButtonPersoCancel);
-		ButtonPersoCancel.setOnClickListener(mEventManager.getButtonPersoCancelListener());
+		ButtonPersoCancel.setOnClickListener(mEventManager.buttonPersoCancelListener);
 
 		Spinner s = (Spinner) findViewById(R.id.SpinnerDialerType);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	            this, R.array.dialers, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
-		s.setOnItemSelectedListener(mEventManager.getSpinnerDialerListener());
+		s.setOnItemSelectedListener(mEventManager.spinnerDialerListener);
 		
 
 		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
@@ -93,15 +94,35 @@ public class UiConfTool extends Activity {
 		CheckBox LOCK_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
 		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
 		
-		STATUS_BAR_AT_THE_BOTTOM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamElements());
-		NOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamNotifications());
-		STREAM_NOTIFICATION_ON_TOP.setOnCheckedChangeListener(mEventManager.getCheckedChangeStreamElements());
-		LOCK_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeLockTypeStream());
-		LAUNCHER_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.getCheckedChangeLauncherTypeStream());
+		STATUS_BAR_AT_THE_BOTTOM.setOnCheckedChangeListener(mEventManager.checkedChangeStreamElements);
+		NOTIFICATION_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeStreamNotifications);
+		STREAM_NOTIFICATION_ON_TOP.setOnCheckedChangeListener(mEventManager.checkedChangeStreamElements);
+		LOCK_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeLockTypeStream);
+		LAUNCHER_TYPE_STREAM.setOnCheckedChangeListener(mEventManager.checkedChangeLauncherTypeStream);
+		
+//		STATUS_BAR_AT_THE_BOTTOM.setOnLongClickListener(mEventManager.testOnLongClickListener);
 		
 		setPersoValues();
 		setPersoHelp(R.string.help_streamElements);
 	}
+
+    /**
+     * Launches the Update activity to add a new contact to the selected accont.
+     */
+    protected void launchUpdateView() {
+        Intent i = new Intent(this, UpdateView.class);
+        startActivity(i);
+    }
+
+    /**
+     * Launches screenshot view
+     */
+    public void LaunchScreenshot(Screen screen) {
+    	setContentView(R.layout.screenshotview);
+    	Intent i = new Intent(this, Screenshot.class);
+    	i.setFlags(screen.getValue());
+        startActivity(i);
+    }
 	
 	/**
 	 * Hide useless interface elements
@@ -254,14 +275,6 @@ public class UiConfTool extends Activity {
 				});
 		AlertDialog alert = builder.create();
 		alert.show();
-    }
-
-    /**
-     * Launches the Update activity to add a new contact to the selected accont.
-     */
-    protected void launchUpdateView() {
-        Intent i = new Intent(this, UpdateView.class);
-        startActivity(i);
     }
     
 	//---------------Menu---------------//

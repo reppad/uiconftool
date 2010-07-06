@@ -16,6 +16,9 @@
          <activity android:name=".UpdateView"
                   android:label="@string/web_name">
         </activity>
+         <activity android:name=".Screenshot"
+                  android:label="Screenshot">
+        </activity>
 
     </application>
     

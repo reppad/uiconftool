@@ -6,6 +6,7 @@ import tommy.lcr.uiconftool.model.Parameters;
 import tommy.lcr.uiconftool.model.Parameters.UIType;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,20 +18,46 @@ import android.widget.AdapterView.OnItemSelectedListener;
  * @author grandgto@gmail.com
  */
 public class EventManager {
+	public enum Screen {
+		STATUS_BAR_AT_THE_BOTTOM(0),
+		NOTIFICATION_TYPE_STREAM(1),
+		STREAM_NOTIFICATION_ON_TOP(2),
+		DIALER_TYPE_ANDROID(3),
+		DIALER_TYPE_STREAM(4),
+		DIALER_TYPE_AOSP(5),
+		LOCK_TYPE_STREAM(6),
+		LAUNCHER_TYPE_STREAM(7);
+		
+		private final int value;
+		
+		private Screen(int value) {
+			this.value = value;
+		}
+		
+		public int getValue() {
+			return this.value;
+		}
+	};
 
-	private UiConfTool				mActivity;
-	private Parameters				mParam;
-	private OnClickListener 		buttonActivateCT,
+	public UiConfTool				mActivity;
+	public Parameters				mParam;
+	public OnClickListener 			buttonActivateCT,
 									buttonPersoListener,
 									buttonValidListener,
 									buttonPersoValidListener,
 									buttonPersoCancelListener;
-	private OnItemSelectedListener	spinnerInterfaceListener,
+	public OnItemSelectedListener	spinnerInterfaceListener,
 									spinnerDialerListener;
-	private OnCheckedChangeListener	checkedChangeStreamNotifications,
+	public OnCheckedChangeListener	checkedChangeStreamNotifications,
 									checkedChangeStreamElements,
 									checkedChangeLockTypeStream,
 									checkedChangeLauncherTypeStream;
+	public OnLongClickListener		onLongClickStatusBarBottom,
+									onLongClickNotificationStream,
+									onLongClickStreamNotificationOnTop,
+									OnLongClickDialer,
+									OnLongClickLockTypeStream,
+									onLongClickLauncherTypeStream;
 
 	/**
 	 * Default constructor
@@ -135,9 +162,7 @@ public class EventManager {
 			}
 		};
 		
-		
 		checkedChangeStreamNotifications = new OnCheckedChangeListener() {
-			
 			public void onCheckedChanged(CompoundButton checkBox, boolean checked) {
 				mActivity.setCheckBoxSTREAM_NOTIFICATION_ON_TOPState(checked);
 				mActivity.setPersoHelp(R.string.help_streamNotifications);
@@ -158,6 +183,52 @@ public class EventManager {
 				mActivity.setPersoHelp(R.string.help_launcherTypeStream);
 			}
 		};
+		
+		
+		onLongClickStatusBarBottom = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				// TODO ...
+				return false;
+			}
+		};
+		onLongClickNotificationStream = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				// TODO ...
+				return false;
+			}
+		};
+		onLongClickStreamNotificationOnTop = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				// TODO ...
+				return false;
+			}
+		};
+		OnLongClickDialer = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				//Attrapper l'état du spinner pour savoir quoi retourner
+				// TODO ...
+				return false;
+			}
+		};
+		OnLongClickLockTypeStream = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				// TODO ...
+				return false;
+			}
+		};
+		onLongClickLauncherTypeStream = new OnLongClickListener() {
+			
+			public boolean onLongClick(View arg0) {
+				// TODO ...
+				return false;
+			}
+		};
+		
 	} //constructor
 
 	/**
@@ -187,74 +258,9 @@ public class EventManager {
 	public UIType getUIType() {
 		return mParam.getUIType();
 	}
-
-	public OnClickListener getButtonActivateCT() {
-		return buttonActivateCT;
-	}
-
-	public OnClickListener getButtonPersoListener() {
-		return buttonPersoListener;
-	}
-
-	public OnClickListener getButtonValidListener() {
-		return buttonValidListener;
-	}
-
-	public OnClickListener getButtonPersoValidListener() {
-		return buttonPersoValidListener;
-	}
-
-	public OnClickListener getButtonPersoCancelListener() {
-		return buttonPersoCancelListener;
-	}
-
-	public OnItemSelectedListener getSpinnerInterfaceListener() {
-		return spinnerInterfaceListener;
-	}
-
-	public OnItemSelectedListener getSpinnerDialerListener() {
-		return spinnerDialerListener;
-	}
-
-	public OnCheckedChangeListener getCheckedChangeStreamNotifications() {
-		return checkedChangeStreamNotifications;
-	}
 	
 	public boolean[] getPersoValues() {
 		return mParam.getPersoValues();
 	}
-
-	public void setCheckedChangeStreamNotifications( OnCheckedChangeListener checkedChangeStreamNotifications) {
-		this.checkedChangeStreamNotifications = checkedChangeStreamNotifications;
-	}
-
-	public OnCheckedChangeListener getCheckedChangeStreamElements() {
-		return checkedChangeStreamElements;
-	}
-
-	public void setCheckedChangeStreamElements(
-			OnCheckedChangeListener checkedChangeStreamElements) {
-		this.checkedChangeStreamElements = checkedChangeStreamElements;
-	}
-
-	public OnCheckedChangeListener getCheckedChangeLockTypeStream() {
-		return checkedChangeLockTypeStream;
-	}
-
-	public void setCheckedChangeLockTypeStream(
-			OnCheckedChangeListener checkedChangeLockTypeStream) {
-		this.checkedChangeLockTypeStream = checkedChangeLockTypeStream;
-	}
-
-	public OnCheckedChangeListener getCheckedChangeLauncherTypeStream() {
-		return checkedChangeLauncherTypeStream;
-	}
-
-	public void setCheckedChangeLauncherTypeStream(
-			OnCheckedChangeListener checkedChangeLauncherTypeStream) {
-		this.checkedChangeLauncherTypeStream = checkedChangeLauncherTypeStream;
-	}
 	
-	
-
 } //class
