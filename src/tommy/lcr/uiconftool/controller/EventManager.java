@@ -26,7 +26,9 @@ public class EventManager {
 		DIALER_TYPE_STREAM(4),
 		DIALER_TYPE_AOSP(5),
 		LOCK_TYPE_STREAM(6),
-		LAUNCHER_TYPE_STREAM(7);
+		LAUNCHER_TYPE_STREAM(7),
+		FULL_UI_ANDROID(8),
+		FULL_UI_ACER(9);
 		
 		private final int value;
 		
