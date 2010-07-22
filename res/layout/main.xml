@@ -46,7 +46,7 @@
 		
 	<ScrollView android:id="@+id/ScrollView01"
 		android:layout_width="wrap_content"
-		android:layout_height="150px">
+		android:layout_height="180px">
 		<TextView android:id="@+id/TextViewPersoHelp"
 			android:text="@string/help_fullUiAcer"
 			android:layout_width="fill_parent"
