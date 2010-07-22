@@ -53,7 +53,7 @@
 		
 	<ScrollView android:id="@+id/ScrollView01"
 		android:layout_width="wrap_content"
-		android:layout_height="60px">
+		android:layout_height="74px">
 		<TextView android:id="@+id/TextViewPersoHelp"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"

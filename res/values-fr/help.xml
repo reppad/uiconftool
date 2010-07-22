@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="help_streamElements">Les éléments Stream consomment beaucoup de batterie</string>
-	<string name="help_fullUiAcer">L\'interface Acer Stream consomme beaucoup de batterie.\nIl est nécessaire de supprimer puis de remettre vos widgets après un changement d\'interface.</string>
+	<string name="help_streamElements">- Maintenez une option appuyée pour afficher un aperçu.\n- Les éléments Stream consomment beaucoup de batterie</string>
+	<string name="help_fullUiAcer">- Sélectionnez une interface puis faites un appui long sur l\'option pour afficher un aperçu.\n- L\'interface Acer Stream consomme beaucoup de batterie.\n- Il est nécessaire de supprimer puis de remettre vos widgets après un changement d\'interface.</string>
 	<string name="help_streamNotifications">Les notifications Stream consomment beaucoup de batterie</string>
 	<string name="help_dialerAOSP">Le dialer AOSP est plus rapide mais il possède moins d\'option</string>
 	<string name="help_lockTypeStream">L\'écran de verrouillage Stream cause des problèmes de rafraichissement pour les widgets</string>

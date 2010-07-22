@@ -26,7 +26,8 @@ import android.widget.Toast;
 public class UiConfTool extends Activity {
 
 	private EventManager mEventManager;
-
+	private boolean mainUI;
+	
 	/**
 	 * Launch at activity starting
 	 */
@@ -36,7 +37,6 @@ public class UiConfTool extends Activity {
 		mEventManager = new EventManager(this);
 		mEventManager.readParam();
 		launchMain();
-
 	}
 	
 	/**
@@ -54,6 +54,7 @@ public class UiConfTool extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		s.setAdapter(adapter);
 		s.setOnItemSelectedListener(mEventManager.spinnerInterfaceListener);
+		s.setOnLongClickListener(mEventManager.onLongClickFullUi);
 
 		Button ButtonPerso = (Button) findViewById(R.id.ButtonPerso);
 		ButtonPerso.setOnClickListener(mEventManager.buttonPersoListener);
@@ -63,6 +64,7 @@ public class UiConfTool extends Activity {
 		
 		setInterfaceSpinnerPosition();
 		refresh();
+		mainUI = true;
 	}
 	
 	/**
@@ -109,6 +111,7 @@ public class UiConfTool extends Activity {
 		
 		setPersoValues();
 		setPersoHelp(R.string.help_streamElements);
+		mainUI = false;
 	}
 
     /**
@@ -128,6 +131,14 @@ public class UiConfTool extends Activity {
     	i.setFlags(screen.getValue());
         startActivity(i);
     }
+
+	protected void onResume() {
+		super.onResume();
+		if(mainUI)
+			launchMain();
+		else
+			launchPerso();
+	}
 	
 	/**
 	 * Hide useless interface elements
@@ -304,7 +315,7 @@ public class UiConfTool extends Activity {
 	    	mEventManager.resetConfiguration();
 	        return true;
 	    case 1:
-	    	popUp("2010  V1.1.2\ngrandgto@gmail.com", 1);
+	    	popUp("Reppad 2010  V1.2.0\ngrandgto@gmail.com", 1);
 	        return true;
 	    case 2:
 	    	launchUpdateView();

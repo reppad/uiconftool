@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Spinner;
 
 /**
  * Event manager
@@ -54,7 +55,8 @@ public class EventManager {
 									checkedChangeStreamElements,
 									checkedChangeLockTypeStream,
 									checkedChangeLauncherTypeStream;
-	public OnLongClickListener		onLongClickStatusBarBottom,
+	public OnLongClickListener		onLongClickFullUi,
+									onLongClickStatusBarBottom,
 									onLongClickNotificationStream,
 									onLongClickStreamNotificationOnTop,
 									onLongClickDialer,
@@ -90,18 +92,7 @@ public class EventManager {
 
 		buttonPersoValidListener = new OnClickListener() {
 			public void onClick(View v) {
-				CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
-				CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
-				CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
-				CheckBox LOCK_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
-				CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
-				
-				mParam.setSTATUS_BAR_AT_THE_BOTTOM(STATUS_BAR_AT_THE_BOTTOM.isChecked());
-				mParam.setNOTIFICATION_TYPE_STREAM(NOTIFICATION_TYPE_STREAM.isChecked());
-				mParam.setSTREAM_NOTIFICATION_ON_TOP(STREAM_NOTIFICATION_ON_TOP.isChecked());
-				mParam.setLOCK_TYPE_STREAM(LOCK_TYPE_STREAM.isChecked());
-				mParam.setLAUNCHER_TYPE_STREAM(LAUNCHER_TYPE_STREAM.isChecked());
-				
+				savePersoParam();
 				mActivity.launchMain();
 			}
 		};
@@ -186,7 +177,23 @@ public class EventManager {
 			}
 		};
 		
-		
+		onLongClickFullUi = new OnLongClickListener() {
+			public boolean onLongClick(View arg0) {
+				Spinner s = (Spinner) mActivity.findViewById(R.id.SpinnerInterfaces);
+				int pos = s.getSelectedItemPosition();
+				switch (pos) {
+				case 0:
+					mActivity.LaunchScreenshot(Screen.FULL_UI_ANDROID);
+					break;
+				case 1:
+					mActivity.LaunchScreenshot(Screen.FULL_UI_ACER);
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		};
 		onLongClickStatusBarBottom = new OnLongClickListener() {
 			public boolean onLongClick(View arg0) {
 				mActivity.LaunchScreenshot(Screen.STATUS_BAR_AT_THE_BOTTOM);
@@ -207,8 +214,24 @@ public class EventManager {
 		};
 		onLongClickDialer = new OnLongClickListener() {
 			public boolean onLongClick(View arg0) {
-				//Attrapper l'état du spinner pour savoir quoi retourner
-//				mActivity.LaunchScreenshot();
+				Spinner s = (Spinner) mActivity.findViewById(R.id.SpinnerDialerType);
+				int pos = s.getSelectedItemPosition();
+				switch (pos) {
+				//dialer android
+				case 0:
+					mActivity.LaunchScreenshot(Screen.DIALER_TYPE_ANDROID);
+					break;
+				//dialer stream
+				case 1:
+					mActivity.LaunchScreenshot(Screen.DIALER_TYPE_STREAM);
+					break;
+				//dialer AOSP
+				case 2:
+					mActivity.LaunchScreenshot(Screen.DIALER_TYPE_AOSP);
+					break;
+				default:
+					break;
+				}
 				return false;
 			}
 		};
@@ -243,6 +266,20 @@ public class EventManager {
 	
 	public void applyConfiguration() {
 		mParam.applyConfiguration();
+	}
+	
+	private void savePersoParam(){
+		CheckBox STATUS_BAR_AT_THE_BOTTOM = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTATUS_BAR_AT_THE_BOTTOM);
+		CheckBox NOTIFICATION_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxNOTIFICATION_TYPE_STREAM);
+		CheckBox STREAM_NOTIFICATION_ON_TOP = (CheckBox) mActivity.findViewById(R.id.CheckBoxSTREAM_NOTIFICATION_ON_TOP);
+		CheckBox LOCK_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLOCK_TYPE_STREAM);
+		CheckBox LAUNCHER_TYPE_STREAM = (CheckBox) mActivity.findViewById(R.id.CheckBoxLAUNCHER_TYPE_STREAM);
+		
+		mParam.setSTATUS_BAR_AT_THE_BOTTOM(STATUS_BAR_AT_THE_BOTTOM.isChecked());
+		mParam.setNOTIFICATION_TYPE_STREAM(NOTIFICATION_TYPE_STREAM.isChecked());
+		mParam.setSTREAM_NOTIFICATION_ON_TOP(STREAM_NOTIFICATION_ON_TOP.isChecked());
+		mParam.setLOCK_TYPE_STREAM(LOCK_TYPE_STREAM.isChecked());
+		mParam.setLAUNCHER_TYPE_STREAM(LAUNCHER_TYPE_STREAM.isChecked());
 	}
 
 	//--------------Getters----------------//

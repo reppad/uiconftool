@@ -66,4 +66,4 @@ public class Screenshot extends Activity {
 			break;
 		}
 	}
-}
+} //class

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="help_streamElements">Stream elements use a lot of battery</string>
-	<string name="help_fullUiAcer">Full UI Acer Stream use a lot of battery.\nYou must delete and re-add your widgets after changing UI</string>
+	<string name="help_streamElements">- Long click on an option to preview\n- Stream elements use a lot of battery</string>
+	<string name="help_fullUiAcer">- Select an interface then do a long click on the option to preview\n- Full UI Acer Stream use a lot of battery.\n- You must delete and re-add your widgets after changing UI</string>
 	<string name="help_streamNotifications">Stream notifications use a lot of battery</string>
 	<string name="help_dialerAOSP">AOSP dialer is faster but with less options</string>
 	<string name="help_lockTypeStream">Lock type Stream will break widget refresh on desktop on reboot</string>
