@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 
 /**
+ * UI Conf Tool for LCR 1.7
  * Event manager
  * @author grandgto@gmail.com
  */

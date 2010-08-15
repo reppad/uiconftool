@@ -11,6 +11,11 @@ import java.io.InputStreamReader;
 
 import android.os.Environment;
 
+/**
+ * UI Conf Tool for LCR 1.7
+ * Event manager
+ * @author grandgto@gmail.com
+ */
 public class Parameters {
 
 	/**
